@@ -25,11 +25,11 @@ Para subir el material a overleaf seguiremos los siguientes pasos:
 
 Las siguientes capturas nos muestran el proceso:
 
-![Crear nuevo proyecto](Sesión 1/Presentación/img/overleaf-crear-proyecto.png)
+![Crear nuevo proyecto](https://github.com/latex-mat-ugr/curso-virtual-2021/blob/main/Sesi%C3%B3n%201/Presentaci%C3%B3n/img/overleaf-crear-proyecto.png)
 
-![Subir proyecto](Sesión 1/Presentación/img/overleaf-subir-proyecto.png)
+![Subir proyecto](https://github.com/latex-mat-ugr/curso-virtual-2021/blob/main/Sesi%C3%B3n%201/Presentaci%C3%B3n/img/overleaf-subir-proyecto.png)
 
-[Arrastrar el archivo comprimido](Sesión 1/Presentación/img/overleaf-arrastrar-zip.png)
+![Arrastrar el archivo comprimido](https://github.com/latex-mat-ugr/curso-virtual-2021/blob/main/Sesi%C3%B3n%201/Presentaci%C3%B3n/img/overleaf-arrastrar-zip.png)
 
 ## Seguimiento del curso a través de Overleaf
 
