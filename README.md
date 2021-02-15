@@ -17,6 +17,19 @@ El curso está dividido en 4 sesiones:
 
 Previo a cada sesión, deberemos [descargar el contenido](https://github.com/latex-mat-ugr/curso-virtual-2021/archive/main.zip) de este repositorio y subir a overleaf la carpeta correspondiente a dicha sesión. 
 
+Para subir el material a overleaf seguiremos los siguientes pasos:
+
+1. Crear un proyecto nuevo: **Nuevo proyecto** > **Subir proyecto**
+2. Arrastrar el archivo comprimido que hemos descargado.
+3. Abrir el archivo `mi primer documento.tex`
+
+Las siguientes capturas nos muestran el proceso:
+
+![Crear nuevo proyecto](Sesión\ 1/Presentación/img/overleaf-crear-proyecto.png)
+
+![Subir proyecto](Sesión\ 1/Presentación/img/overleaf-subir-proyecto.png)
+
+![Arrastrar el archivo comprimido](Sesión\ 1/Presentación/img/overleaf-arrastrar-zip.png)
 
 ## Seguimiento del curso a través de Overleaf
 
