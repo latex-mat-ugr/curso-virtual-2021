@@ -25,11 +25,11 @@ Para subir el material a overleaf seguiremos los siguientes pasos:
 
 Las siguientes capturas nos muestran el proceso:
 
-![Crear nuevo proyecto]("Sesión 1"/Presentación/img/overleaf-crear-proyecto.png?raw=true)
+![Crear nuevo proyecto](Sesión 1/Presentación/img/overleaf-crear-proyecto.png)
 
-![Subir proyecto](Sesión 1/Presentación/img/overleaf-subir-proyecto.png?raw=true)
+![Subir proyecto](Sesión 1/Presentación/img/overleaf-subir-proyecto.png)
 
-[Arrastrar el archivo comprimido](Sesión 1/Presentación/img/overleaf-arrastrar-zip.png?raw=true)
+[Arrastrar el archivo comprimido](Sesión 1/Presentación/img/overleaf-arrastrar-zip.png)
 
 ## Seguimiento del curso a través de Overleaf
 
