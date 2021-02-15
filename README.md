@@ -15,9 +15,8 @@ El curso está dividido en 4 sesiones:
 
 ## Material para el curso
 
-Previo a cada sesión, deberemos descargar el material para dicha sesión y subir a overleaf la carpeta correspondiente a dicha sesión. A continuación están los enlaces para ello:
+Previo a cada sesión, deberemos [descargar el contenido](https://github.com/latex-mat-ugr/curso-virtual-2021/archive/main.zip) de este repositorio y subir a overleaf la carpeta correspondiente a dicha sesión. 
 
-- [Sesión 1]()
 
 ## Seguimiento del curso a través de Overleaf
 
