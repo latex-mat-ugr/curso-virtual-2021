@@ -1,0 +1,33 @@
+% Mi primer documento de LaTeX
+% Los comentarios se indican con el símbolo de porcentaje "%".
+% LaTeX ignorará desde dicho símbolo hasta el final de la línea.
+
+% Declaramos la clase de documento
+\documentclass[a4paper, 12pt, twoside]{article}
+
+% Indicamos la codificación de caracteres en que esta escrito este fichero.
+% Esto dependerá del editor que estamos usando y podrá configurarse en las
+% opciones del editor. 
+% Es aconsejable usar la codificación utf8 (es la codificación por defecto 
+% en Mac, Linux y en sistemas Windows modernos)
+\usepackage[utf8]{inputenc}
+
+% Declaramos el idioma del documento. Esto es importante tanto para poder 
+% escribir los signos de puntuación ¡, ¿, º, ª, así como los acentos á, é
+% í, ó, ú, ü y la letra ñ. Además, el patrón de división de palabras usado
+% al final de una línea se adaptará a dicho idioma.
+\usepackage[spanish]{babel}
+
+% Indicamos el autor y el título del documento
+\title{Mi primer documento en \LaTeX}
+\author{Francisco Torralbo}
+\date{\today}
+
+% Cuerpo de documento
+\begin{document}
+
+\maketitle
+
+Cuerpo del documento
+
+\end{document}
