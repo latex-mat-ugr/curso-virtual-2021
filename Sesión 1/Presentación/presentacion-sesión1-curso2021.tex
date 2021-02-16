@@ -22,6 +22,9 @@
 \usetheme[sectionpage=progressbar,numbering=none,titleformat frame=smallcaps]{metropolis}
 \setbeamertemplate{navigation symbols}{}
 
+\usepackage{fontspec}
+\setromanfont{TeX Gyre Pagella}
+
 \definecolor{dblue}{rgb}{0.23,0.4,0.7}
 \definecolor{azulon}{rgb}{0,0,0.44}
 \definecolor{naranjon}{rgb}{.84,.418,0}
@@ -833,39 +836,65 @@ Esto es un texto centrado
 
 \subsection{Tipos y colores}
 
-\begin{frame}{Tipos}
-  Las familias tipográficas 
+% \begin{frame}{Tipos}
+%   Las familias tipográficas 
 
-  Codificación (paquete \texttt{fontenc})
+%   Codificación (paquete \texttt{fontenc})
 
-  \begin{tikzpicture}[every node/.style={inner sep=0.25cm,font=\sffamily\bfseries}]
-    % Overlaying rectangles
-    \begin{scope}[fill=yellow!65!red,nearly transparent]
-        % Series
-        \fill (-4.25,-2) rectangle (4.25,2);
-        \draw [white, opaque, ultra thick] (0,-2) -- (0,2);
-        % Size
-        \fill (-1.5,-2) rectangle (1.5,2);
-        % Family
-        \fill (-4.5,-2.25) rectangle (4.5,2.75);
-        % Encoding
-        \fill (-4.75,-2.5) rectangle (4.75,3.5);
-    \end{scope}
-    % Text
-    \node {Tamaño};
-    \node at (-4,0)      [right]       {Grosor};
-    \node at (-4,-0.5)      [right]       {(\emph{series})};
-    \node at (4,0)       [left]        {Perfiles};
-    \node at (4,-0.5)       [left]        {(\emph{shape})};
-    \node at (-4.5,2.75) [below right] {Familia (\emph{family})};
-    \node at (-4.75,3.5) [below right] {Fuente};
-\end{tikzpicture}
+%   \begin{tikzpicture}[every node/.style={inner sep=0.25cm,font=\sffamily\bfseries}]
+%     % Overlaying rectangles
+%     \begin{scope}[fill=yellow!65!red,nearly transparent]
+%         % Series
+%         \fill (-4.25,-2) rectangle (4.25,2);
+%         \draw [white, opaque, ultra thick] (0,-2) -- (0,2);
+%         % Size
+%         \fill (-1.5,-2) rectangle (1.5,2);
+%         % Family
+%         \fill (-4.5,-2.25) rectangle (4.5,2.75);
+%         % Encoding
+%         \fill (-4.75,-2.5) rectangle (4.75,3.5);
+%     \end{scope}
+%     % Text
+%     \node {Tamaño};
+%     \node at (-4,0)      [right]       {Grosor};
+%     \node at (-4,-0.5)      [right]       {(\emph{series})};
+%     \node at (4,0)       [left]        {Perfiles};
+%     \node at (4,-0.5)       [left]        {(\emph{shape})};
+%     \node at (-4.5,2.75) [below right] {Familia (\emph{family})};
+%     \node at (-4.75,3.5) [below right] {Fuente};
+% \end{tikzpicture}
 
-% https://tex.stackexchange.com/questions/7669/bfseries-is-to-textbf-as-what-is-to-textsf/7670#7670
+% % https://tex.stackexchange.com/questions/7669/bfseries-is-to-textbf-as-what-is-to-textsf/7670#7670
+% \end{frame}
+
+\begin{frame}[fragile]{Comandos para cambiar el estilo tipográfico}
+  \tiny
+  \rmfamily
+
+  \noindent
+  \begin{tabular}{ll|llll|l}
+    \toprule 
+    \multicolumn{2}{c}{Familia} & \multicolumn{4}{c}{Estilo} & \multicolumn{1}{c}{Tamaño} \\ \cmidrule{3-6}
+                               & & \multicolumn{2}{c}{Grosor (series)} & \multicolumn{2}{c}{Perfil (shape)} &
+    \\\midrule
+    \textrm{Serif} & \verb+\textrm+ & Normal & \verb+\textmd+ & Recto & \verb+\textup+ & {\tiny\verb+\tiny+} \\
+                            & \verb+\rmfamily+ & & \verb+\mdseries+ & & \verb+\upshape+ & {\scriptsize\verb+\scriptsize+} \\
+    \textsf{sans-serif} & \verb+\textsf+ & \textbf{Negrita} & \verb+\textbf+ & \textit{Cursiva} & \verb+\textit+ & {\footnotesize\verb+\footnotesize+} \\
+                            & \verb+\sffamily+ & & \verb+\bfseries+ & & \verb+\itshape+ & {\small\verb+\small+} \\
+    \texttt{Monoespaciada} & \verb+\texttt+ & & & \textsl{Inclinada} & \verb+\textsl+ & {\normalsize\verb+\normalsize+} \\
+                            & \verb+\ttfamily+ & & & & \verb+\slshape+ & {\large\verb+\large+} \\
+                            & & & & \textsc{Versalitas} & \verb+\textsc+ & {\Large\verb+\Large+} \\
+                            & & & & & \verb+\scshape+ & {\LARGE\verb+\LARGE+} \\
+                            & & & & & & {\huge\verb+\huge+} \\
+                            & & & & & & {\Huge\verb+\Huge+} \\
+    \bottomrule
+  \end{tabular}
+
+  \textit{\textbf{\textrm{\normalsize Texto compuesto en la fuente ``TeX Gyre Pagella'' en serif negrita cursiva a tamaño normal.}}}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Tipos}
+  \frametitle{Ejemplos}
   \begin{block}{Familias de tipos de letra}
     %Hay tres tipos de letra:
     \begin{description}[\texttt{Máquina de escribir}]
@@ -890,7 +919,7 @@ Esto es un texto centrado
 \end{frame}
 
 
-\begin{frame}{Tipos}
+\begin{frame}{Ejemplos}
 
   \begin{block}{Grosor}
     \begin{description}[\texttt{Máquina de}]
@@ -913,7 +942,7 @@ Esto es un texto centrado
 
 
 \begin{frame}[fragile]
-  \frametitle{Tipos}
+  \frametitle{Tamaños}
 
   \begin{block}{Tamaño de letra}
     \begin{lstlisting}{language=tex}
@@ -935,11 +964,7 @@ Esto es un texto centrado
       {\tiny$\backslash$tiny}
       {\scriptsize$\backslash$scriptsize}
       {\footnotesize$\backslash$footnotesize}
-    {\small$\backslash$small}}
-
-    \medskip
-
-    \texttt{\normalsize$\backslash$normalsize}
+    {\small$\backslash$small}} \texttt{\normalsize$\backslash$normalsize}
 
     \texttt{{\large$\backslash$large}
       {\Large$\backslash$Large}
