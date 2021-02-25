@@ -43,14 +43,14 @@ Debido al carácter online del curso y la cantidad de participantes habrá conec
 2. Abrir un chat privado con el tutor.
 3. Preguntar la duda a través de dicho chat privado. Si el tutor lo cree necesario *compartir* el proyecto en overleaf con él para que pueda detectar más fácilmente el error. Para compartir un proyecto en overleaf usaremos el botón **Share** en la parte superior derecha del editor:
 
-![Compartir un proyecto en Overleaf](how-to-share-overleaf.PNG)
+![Compartir un proyecto en Overleaf](img/how-to-share-overleaf.PNG)
 
 A continuación aparecerá una pantalla con dos tipos de enlaces:
 
-![Enlaces para compartir un proyecto en Overleaf](link-sharing-overleaf.png)
+![Enlaces para compartir un proyecto en Overleaf](img/link-sharing-overleaf.png)
 
 y copiaremos el primero para compartirlo en el chat del tutor.
 
 Si no aparece directamente esa ventana tendremos que pulsar en el enlace *Turn on link sharing*:
 
-![Activar los enlaces para compartir un proyecto en Overleaf](turn-on-link-sharing-overleaf.png)
+![Activar los enlaces para compartir un proyecto en Overleaf](img/turn-on-link-sharing-overleaf.png)
