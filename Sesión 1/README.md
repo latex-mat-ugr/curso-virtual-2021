@@ -9,7 +9,7 @@ En esta primera sesión se darán los primeros pasos con LaTeX. Para ello se cre
 
 ## Acerca del material disponible en esta carpeta
 
-El documento [mi primer documento.tex](mi primer documento.tex) se editará interactivamente durante el curso añadiendo contenido. En la carpeta [secciones](secciones/) se encuentran, divididos en distintos archivos, el aspecto final de [mi primer documento.tex](mi primer documento.tex) una vez añadidos cada uno de los aspectos tratados durante el curso:
+El documento [mi primer documento.tex]("mi primer documento.tex") se editará interactivamente durante el curso añadiendo contenido. En la carpeta [secciones](secciones/) se encuentran, divididos en distintos archivos, el aspecto final de [mi primer documento.tex]("mi primer documento.tex") una vez añadidos cada uno de los aspectos tratados durante el curso:
 
 1. Estructura básica de un fichero
 2. Partes y jerarquía de un documento.
