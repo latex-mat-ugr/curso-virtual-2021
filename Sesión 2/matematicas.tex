@@ -439,7 +439,7 @@ Ya hemos visto que el espacio entre caracteres en el modo matemático es distint
 \end{codigo-arriba}
 Los comandos \mintinline{latex}{\intertext{...}} y \mintinline{latex}{\shortintertext{...}} se utilizan para incluir texto en ecuaciones que ocupan varias líneas. Están explicados con un poco más de detalle en la sección~\ref{sec:misc-ecuaciones}.
 
-\subsection*{Letras griegas}    
+\subsection{Letras griegas}    
 
 \begin{table}[H]
 \centering
@@ -464,7 +464,7 @@ Salida & Código & Salida & Código & Salida & Código & Salida & Código \\
 \end{table}
 
     
-\subsection*{Operadores}
+\subsection{Operadores}
 
  Dependiendo del tipo de operador el espaciado puede ser distinto.
 
@@ -955,7 +955,7 @@ Un par de comentarios antes de pasar a otro apartado:
     \end{codigo-lado}
 \end{itemize}
 
-\subsubsection*{Una aplicación: valor absoluto y norma}
+\subsubsection{Una aplicación: valor absoluto y norma}
 
 Hay parejas de delimitadores que se usan con mucha frecuencia. Por ejemplo, el valor absoluto, el módulo o la norma son muy comunes. Es cómodo definir un comando que simplifique su escritura. Usando \LaTeX{}, podemos definir los comandos \mintinline{latex}{\abs} y \mintinline{latex}{\norma} añadiendo en la cabecera las siguientes líneas
 \begin{minted}{latex}
@@ -1087,7 +1087,7 @@ Hay varias reglas genéricas para todos los entornos que vamos a usar:
 
 Sólo aparece un número para toda la expresión.
 
-\subsubsection*{Una expresión alineada: el entorno split}
+\subsubsection{Una expresión alineada: el entorno split}
 
 Comenzamos con el caso más simple: una ecuación que, debido a su longitud, tenemos que partir. El entorno \texttt{split} ocupa toda la ecuación y recordemos que usaremos \& para indicar el punto donde se alinean las ecuaciones y \textbackslash\textbackslash para indicar nueva línea.
 \begin{codigo-lado}
@@ -1101,7 +1101,7 @@ Comenzamos con el caso más simple: una ecuación que, debido a su longitud, ten
 \end{equation}
 \end{codigo-lado}
 
-\subsubsection*{Una ecuación sin alinear: el entorno multline}
+\subsubsection{Una ecuación sin alinear: el entorno multline}
 
 El entorno \texttt{multline} escribe la primera línea a la izquierda, la última a la derecha y las intermedias centradas.
 
@@ -1120,7 +1120,7 @@ b^{30}+30 a b^{29}+435 a^2 b^{28}+4060 a^3 b^{27} + 27405 a^4 b^{26}
 
 \subsection{Varias ecuaciones}
 
-\subsubsection*{Sin alinear: el entorno gather}
+\subsubsection{Sin alinear: el entorno gather}
 
 El entorno \texttt{gather} escribe las líneas centradas, cada una con su correspondiente numeración.
 \begin{codigo-lado}
@@ -1131,11 +1131,11 @@ a_2 = b_2 + c_2 - d_2 + e_2 \label{eq:gather2}
 \end{codigo-lado}
 Observa que, como cada ecuación está numerada, podemos añadir una etiqueta a cada una para hacer referencia a ellas en otro momento.
 
-\subsubsection*{Varias ecuaciones con alineamiento}
+\subsubsection{Varias ecuaciones con alineamiento}
 
 Hay tres entornos para escribir este tipo de expresiones: \texttt{align}, \texttt{alignat} y \texttt{flalign}. 
 
-\subsubsection*{align}
+\subsubsection{align}
 
 Comenzamos por el primero, quizá el más común de todos. Con \texttt{align} podemos escribir varias ecuaciones, alineadas en un cierto punto
 \begin{codigo-arriba}
@@ -1162,7 +1162,7 @@ Por ejemplo, podemos usar este entorno para añadir una columna donde incluir un
 \end{codigo-arriba}	
 No tenemos un control demasiado preciso sobre la separación entre las columnas y el texto; lo más que podemos conseguir es separarlo más añadiendo columnas extra sin contenido, esto es, añadiendo más~\&.
 
-\subsubsection*{alignat}
+\subsubsection{alignat}
 
 \texttt{alignat} es una variante de \texttt{align} que permite especificar la separación entre columnas. Por defecto no hay ninguna separación. Lo que hace \texttt{alignat} es ir colocando pares de columnas alineadas a la derecha y a la izquierda y dicho número hay que indicárselo al comienzo. Observa en el siguiente ejemplo cómo la separación entre los dos grupos de ecuaciones se marca con la orden \mintinline{latex}{\qquad}. Prueba a cambiarla por, por ejemplo, \mintinline{latex}{\hspace{1cm}}.
 \begin{codigo-arriba} 
@@ -1182,7 +1182,7 @@ También podemos aprovechar que no deja espacio entre columnas para alinear un s
 \end{codigo-lado}
 
 
-\subsubsection*{flalign}
+\subsubsection{flalign}
 
 \texttt{flalign}, \emph{full length align}, utiliza la anchura completa de la línea para escribir las ecuaciones. 
 \begin{codigo-arriba}
