@@ -1,0 +1,459 @@
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass{article}
+
+% Codificación (acentos)
+\usepackage[utf8]{inputenc}
+
+% Cargamos un paquete para cambiar la tipografía.
+% Ver más opciones en https://tug.org/FontCatalogue/
+\usepackage[sc]{mathpazo}
+\linespread{1.05}         % Palladio needs more leading (space between lines)
+\usepackage[T1]{fontenc}
+
+
+
+%%% Matemáticas Paquetes AMS
+\usepackage{amsfonts,amsmath,amssymb,amsthm} % Símbolos, teoremas de AMS
+\usepackage{mathtools} % % Algunos añadidos y correcciones a amsmath
+\usepackage{esvect} % Vectores con flechas
+
+\numberwithin{equation}{section}
+\allowdisplaybreaks[1] % 1-4, permite partir ecuaciones entre páginas
+
+\DeclareMathOperator{\arcsen}{arc\,sen} 
+\DeclareMathOperator{\dist}{distancia}
+\DeclareMathOperator*{\limite}{límite}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norma{\lVert}{\rVert}
+
+% teoremas
+\theoremstyle{plain}
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{prop}[teorema]{Proposición}
+\newtheorem{coro}[teorema]{Corolario}
+\newtheorem{lema}[teorema]{Lema}
+\theoremstyle{definition}
+\newtheorem{definicion}[teorema]{Definición}
+\theoremstyle{remark}
+\newtheorem*{observacion}{Observación} 
+
+
+
+
+%%% Configuración del idioma (el valor por defecto es el último)
+\usepackage[english,spanish]{babel}
+\decimalpoint
+
+% Paquete tikz para construir gráficos
+\usepackage{tikz}
+\usetikzlibrary{babel}
+
+% Ajuste tipográficos
+\usepackage[babel]{microtype}
+
+% Números y unidades
+\usepackage{siunitx}
+\sisetup{%
+  exponent-product={\ensuremath{\cdot}},
+  inter-unit-product={\,},
+  output-decimal-marker={.}
+  }
+
+
+% Tablas
+\usepackage{booktabs} % ayuda para mejorar el aspecto de las tablas
+\renewcommand{\arraystretch}{1.2} % aumenta la separación entre las filas de una tabla
+
+% H para forzar figuras en un lugar
+\usepackage{float}
+
+% Paquetes para incluir código
+%\usepackage{minted}
+% \usepackage{listing}
+  
+ % Tamaño del papel
+\usepackage[twoside,a4paper,margin=2.5cm]{geometry}
+
+
+% Enlaces 
+\usepackage{hyperref}
+\usepackage{url}
+\hypersetup{pdftitle={Introducción al lenguaje LaTeX para edición de textos académicos},
+  pdfsubject={Curso de LaTeX}
+  pdfauthor={Orientamat}
+  pdfkeywords={LaTeX, Orientamat}
+}
+
+
+%%% Metadatos de este documento
+
+\title{Matemáticas} % título
+\author{Orientamat} % autor
+\date{\today} % fecha
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\bigskip
+
+\section{Introducción}
+
+Una de las ventajas de \LaTeX{} es la facilidad para incluir fórmulas o ecuaciones, que pueden extenderse a lo largo de varias líneas, conteniendo símbolos, operadores y delimitadores.
+
+Existen tres \emph{modos} en \LaTeX:
+\begin{description}
+    \item[Párrafo] Escribimos el texto como una sucesión de palabras separadas por líneas en blanco. El texto aparece justificado.
+    \item[Sin justificar] Se escribe igual, pero \LaTeX{} lo escribe en una línea de izquierda a derecha. Es lo que pasa, por ejemplo, al usar \mbox{\textcolor{red}{el texto que sea, aunque no entre en la línea y quede una línea muy largar sin partir}}.
+    \item[Modo matemático] Se pueden usar símbolos (raíces, fracciones,...), todas las letras se consideran símbolos, que aparecen en itálica, y los espacios no se tienen en cuenta. El espaciado depende del tipo de símbolo.
+\end{description}
+
+\section{¿Cómo escribir matemáticas?}
+
+\subsection{Entornos matemáticos}
+
+% $,\[ equation equation* label ref eqref 
+
+Hay dos formas de incluir expresiones matemáticas en el texto:
+\begin{itemize}
+    \item En el mismo párrafo con el resto del texto o
+    \item centrado en una línea, o varias, aparte.
+\end{itemize}
+
+
+
+Consideremos la ecuación 
+\begin{equation} \label{eq:grado2}
+    ax^2+bx+c=0,
+\end{equation}
+donde \(a\), \(b\) y \(c\) son números reales con $a \neq 0$. Su solución 
+general es
+\begin{equation} \label{eq:solucion}
+    x=\frac{-b \pm \sqrt{b^2-4ac}}{2a}. \tag{Solución}
+\end{equation}
+El número de soluciones reales depende del valor del \emph{discriminante}, 
+\[
+    \Delta = b^2-4ac.
+\]
+Si el discriminante es negativo, entonces la ecuación~(\ref{eq:grado2}) no 
+tiene soluciones reales.
+
+
+
+
+
+
+\subsection{Espaciado horizontal}
+
+Los espacios dentro del modo matemático \emph{no} se tienen en cuenta. El espacio dentro de las fórmulas es distinto al espacio en modo texto.
+
+
+Sea $x=1,2$ o $3$ con sea $x=1$, $2$ o $3$ y sean $a$, $b\in \mathbb{R}$.
+
+
+% \, \! \: \quad \qquad \hspace{1cm} ~
+
+
+\subsection{Letras diversas}
+
+%\mathrm \mathit \mathsf \mathbb \mathcal \mathfrak
+
+% \displaystyle textstyle script scriptscript
+
+
+\[ 
+	f(z)=\int_{C(a,r)} \frac{f(w)}{w-z} \,\mathrm{d} w, \quad \forall\, z \in D(a,r).
+\]
+
+
+\section{Construcciones básicas}
+
+\subsection{Subíndices y superíndices}
+
+% ^ _ \prescript{}{} \substack
+
+
+
+\subsection{Fracciones y binomios} 
+
+% frac dfrac tfrac binom dbinom tbinom splitfrac cfrac
+
+
+\[
+\frac{1+x}{2-\frac{x}{x+1}} + \frac{1+\dfrac{1}{2}}{1-\frac{1}{2}}
+\]
+\[
+  a_0+\cfrac{1}{a_1+\cfrac{1}{a_2+\cfrac{1}{a_3+\cdots}}}
+\]    
+\[ a=\frac{
+          \splitfrac{xy + xy + xy + xy + xy}
+                    {+ xy + xy + xy + xy}
+}
+{z} =\frac{
+          \splitdfrac{xy + xy + xy + xy + xy}
+                    {+ xy + xy + xy + xy}
+    }{z} 
+\]
+
+
+
+\subsection{Raíces}
+
+% \sqrt \sqrt[3]{x} $\sqrt[\leftroot{2} \uproot{2} 6+x]{3}$	
+
+
+\subsection{Puntos suspensivos}
+
+% dots ldots cdots dotsc 
+
+
+\subsection{Acentos y gorros}
+
+%\acute hat bar tilde widehat widetilde mathring
+
+% esvect vv en vez de \vec
+
+% overline underline
+
+% overbrace underbrace
+\[
+\overbrace{a+b+\underbrace{c+e+d}+f+g}^{n}+\underbrace{a+b}_{(2)}
+\]
+
+\subsection{Integrales, sumatorios, productos}
+
+% int sum prod 
+
+\subsection{Conjuntos}
+
+% subset susbseteq in notin
+
+\subsection{Texto en fórmulas}
+
+% \text intertext
+
+
+\subsection{Letras griegas}    
+
+%alpha beta gamma delta epsilon varepsilon pi nu omega tau lambda Phi Psi
+
+
+    
+\subsection{Operadores}
+
+% sin cos min exp ker gcd hom arctan lim log tan arctan
+
+% sen max lim tg arctg
+
+% DeclareMathOperator DeclareMathOperator*
+
+%DeclareMathOperator*{\limite}{límite}
+
+
+
+\subsection{Símbolos}
+
+% binarios, relaciones 
+% : colon | mid
+
+\subsubsection{Operaciones binarias}
+
+%+ -  *
+
+\subsubsection{Relaciones}
+
+% < leq le neq  > approx
+
+
+\subsubsection{Flechas}
+
+%leftarrow rightarrow leftrightarrow Rightarrow implies iff
+
+
+\subsubsection{Símbolos derivados de letras}
+
+% in partial ell exists re im imath jmath
+
+\subsubsection{Símbolos de tamaño variable}
+
+% bigcap bigcup sum prod int
+
+
+\subsection{Delimitadores}
+
+% ( [ { | || langle 
+
+\subsubsection*{Una aplicación: valor absoluto y norma}
+
+%\newcommand*\abs[1]{\left\lvert#1\right\rvert}
+%\newcommand*\norma[1]{\left\lVert#1\right\rVert}
+
+%\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+%\DeclarePairedDelimiter\norma{\lVert}{\rVert}
+
+
+
+
+
+\subsection{Flechas extensibles}
+
+%\xleftarrow[abajo]{arriba} \xrightarrow[abajo]{arriba}
+
+
+\subsection{Matrices}
+
+% matrix pmatrix bmatrix vmatrix smallmatrix
+
+% array{lcr}
+
+
+\subsection{Unidades}
+
+% siunitx \num{123456.0123456} \SI{1000}{\km\per\hour}
+
+
+\section{Ecuaciones en varias líneas}
+
+% equation split
+
+
+%\begin{itemize}
+%	\item Si le añadimos una $*$ al entorno, obtenemos la versión sin numerar;
+%	\item \verb+\\+ se utiliza para partir la línea;
+%	\item \verb+\\+ se usa en todas las líneas, menos en la última;
+%	\item \verb+&+ se usa, en los entornos que lo permitan, para indicar un punto común donde se alinean las expresiones;
+%	\item No se pueden dejar líneas en blanco;
+%	\item No se dejan líneas en blanco antes de una ecuación.
+%\end{itemize}
+
+\subsection{Una ecuación en varias líneas}
+
+
+\subsubsection*{Una expresión alineada: el entorno split}
+
+
+\subsubsection*{Una ecuación sin alinear: el entorno multline}
+
+\subsection{Varias ecuaciones}
+
+\subsubsection*{Sin alinear: el entorno gather}
+
+
+\subsubsection*{Varias ecuaciones con alineamiento}
+
+\subsubsection*{flalign}
+
+
+\subsection{Entornos subsidiarios}
+\[
+\left.
+\begin{aligned}[c]
+ x & = 3 + \mathbf{p} + \alpha\\
+      y & = 4 + \mathbf{q}\\
+      z & = 5 + \mathbf{r}\\
+      u & = 6 + \mathbf{s} \\
+      \beta & = 1
+\end{aligned} \right\}
+\text{\quad usando\quad}
+\left[
+\begin{gathered}
+      \mathbf{p} = 5 + a + \alpha\\
+      \mathbf{q} = 12\\
+      \mathbf{r} = 13\\
+      \mathbf{s} = 11 + d
+\end{gathered}
+\right.
+\]
+
+
+\[	
+f(x) = \begin{cases}
+			x^2, & \text{si $x>0$,} \\
+			1-x, & \text{si $x \leq 0$.}
+	   \end{cases}
+\]			
+
+
+\subsection{Miscelánea} \label{sec:misc-ecuaciones}
+
+% displaybreak allowdisplaybreaks intertext shortintertext
+
+
+%	\numberwithin{equation}{section}	
+
+% tag notag
+
+
+
+
+\section{Teoremas y demostraciones}
+
+%\newtheorem{entorno}{Nombre}[nivel para la numeración]
+%\newtheorem{entorno}[misma numeración que]{Nombre}
+
+
+%\theoremstyle{plain}
+%\newtheorem{teorema}{Teorema}[section]
+%\newtheorem{coro}[teorema]{Corolario}
+%\newtheorem{lema}[teorema]{Lema}
+%\theoremstyle{definition}
+%\newtheorem{definicion}[teorema]{Definición}
+%\theoremstyle{remark}
+%\newtheorem*{observacion}{Observación} 
+
+
+\begin{definicion}
+Sea $f \colon [a,b] \to \mathbb{R}$ una función. Diremos que $f$ es \emph{lipschitziana} si existe una constante $K$ tal que 
+\[
+\left| f(x)-f(y) \right| \leq M \left| x-y \right|, \quad \forall x,y \in [a,b].
+\]
+\end{definicion}
+
+\begin{prop}
+Las funciones lipschitzianas son continuas.
+\end{prop}
+\begin{proof}
+Aquí va la demostración completa, con sus cuentas, algún $\varepsilon$ y algún $\delta$.
+\end{proof}
+
+\begin{teorema}[de los ceros de Bolzano]
+Sea $f \colon [a,b] \to \mathbb{R}$ una función cotinua verificando que $f(a)f(b)<0$. Entonces existe $c \in (a,b)$ tal que $f(c)=0$.
+\end{teorema}
+
+
+\section{Entornos flotantes}
+
+
+
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{AMUG} American Mathematical Society and the \LaTeX3 Project:
+  \emph{User's Guide for the \textnormal{\ttfamily amsmath} package},
+  Version~2.$+$,
+  \url{https://mirror.ctan.org/macros/latex/required/amsmath/amsldoc.tex} and
+  \url{https://mirror.ctan.org/macros/latex/required/amsmath/amsldoc.pdf},
+  2021.
+
+\bibitem{BEZ} Javier Bezos, \emph{Ortotipografía y notaciones matemáticas}, \url{https://www.texnia.com/archive/ortomatem.pdf}.
+
+\bibitem{CLSL} Scott Pakin:
+  \emph{The Comprehensive \LaTeX{} Symbol List},
+  \url{https://ctan.org/tex-archive/info/symbols/comprehensive/}.
+
+\bibitem{LFC} The \LaTeX{} Font Catalogue, 
+  \url{https://tug.org/FontCatalogue/allfonts.html} .
+
+\bibitem{MML} George Gr\"atzer: \textit{More Math into \LaTeX},
+   5th edition, Springer, New York, 2016.
+
+\bibitem{SMG} American Mathematical Society: \emph{Short Math Guide v.2.0}, \url{http://mirrors.ctan.org/info/short-math-guide/short-math-guide.pdf}.
+
+\end{thebibliography}
+
+
+\end{document}
