@@ -1,0 +1,1364 @@
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass{article}
+
+% Codificación (acentos)
+\usepackage[utf8]{inputenc}
+
+
+
+
+%%% Matemáticas Paquetes AMS
+\usepackage{amsfonts}
+\usepackage{amsmath} % Matemáticas
+\usepackage{amssymb,amsthm} % Símbolos y teoremas
+\usepackage{mathtools} % % Algunos añadidos y correcciones a amsmath
+\usepackage{esvect}
+
+\numberwithin{equation}{section}
+\allowdisplaybreaks[1] % 1-4, permite partir ecuaciones entre páginas
+
+\DeclareMathOperator{\arcsen}{arc\,sen} 
+\DeclareMathOperator{\dist}{distancia}
+\DeclareMathOperator*{\limite}{límite}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norma{\lVert}{\rVert}
+
+% teoremas
+\theoremstyle{plain}
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{prop}[teorema]{Proposición}
+\newtheorem{coro}[teorema]{Corolario}
+\newtheorem{lema}[teorema]{Lema}
+\theoremstyle{definition}
+\newtheorem{definicion}[teorema]{Definición}
+\theoremstyle{remark}
+\newtheorem*{observacion}{Observación} 
+
+% Fuentes (letra del documento)
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.95,semibold]{cabin}
+\usepackage[scaled=0.98,space=1.05,proportional]{erewhon}
+\usepackage[varqu,varl,scaled=1.0]{inconsolata}
+\usepackage[utopia,vvarbb]{newtxmath}
+
+
+
+%%% Configuración del idioma (el valor por defecto es el último)
+\usepackage[english,spanish]{babel}
+\decimalpoint
+
+% Paquete tikz para construir gráficos
+\usepackage{tikz}
+\usetikzlibrary{babel}
+
+% Ajuste tipográficos
+\usepackage[babel]{microtype}
+
+% Números y unidades
+\usepackage{siunitx}
+\sisetup{%
+  exponent-product={\ensuremath{\cdot}},
+  inter-unit-product={\,},
+  output-decimal-marker={.}
+  }
+
+% Cajas, entre otras muchas cosas
+\usepackage{tcolorbox}
+\tcbuselibrary{minted,breakable,skins}
+\newtcblisting{codigo-arriba}{colback=black!1!white,colframe=white!50!black,breakable}
+\newtcblisting{codigo-lado}{colback=black!1!white,colframe=white!50!black,listing side text}
+
+% Tablas
+\usepackage{booktabs} % ayuda para mejorar el aspecto de las tablas
+\renewcommand{\arraystretch}{1.2} % aumenta la separación entre las filas de una tabla
+
+% H para forzar figuras en un lugar
+\usepackage{float}
+
+% Paquetes para incluir código
+\usepackage{minted}
+% \usepackage{listing}
+  
+ % Tamaño del papel
+\usepackage[twoside,a4paper,inner=2.7cm,outer=3.7cm,top=3.2cm,headsep=0.7cm,bottom=3.2cm,footskip=1cm plus 2mm minus 4mm]{geometry}
+%\usepackage[a5paper,landscape,margin=0.5cm]{geometry}
+
+% personalizar listas 
+\usepackage{enumitem}
+\setlist[description]{font=\sffamily}
+\setlist[enumerate]{font=\upshape\sffamily}
+\setlist{%
+  topsep={0.3em plus 0.1em minus 0.1em},%
+  itemsep=0em,%{0.4em plus 0.1em minus 0.1em},%
+}
+
+% Enlaces 
+\usepackage{hyperref}
+\usepackage{url}
+\hypersetup{pdftitle={Introducción al lenguaje LaTeX para edición de textos académicos},
+  pdfsubject={Curso de LaTeX}
+  pdfauthor={Orientamat}
+  pdfkeywords={LaTeX, Orientamat}
+}
+
+%%% TÍTULOS / ESTRUCTURA
+\usepackage[bf,sf]{titlesec}
+
+% Estilo y espaciado de títulos de secciones.
+\titleformat{\section}{%
+  \fontsize{15}{17}\selectfont\sffamily\bfseries\raggedright%
+}{\thesection.}{0.5em}{}{}
+\titlespacing{\section}{0pt}{%
+  1.7em plus 0.2em minus 0.4em%
+}{0.5em plus 0.1em minus 0.15em}
+
+% Estilo y espaciado de títulos de subsecciones.
+\titleformat{\subsection}{%
+  \fontsize{13}{15}\selectfont\sffamily\bfseries\raggedright%
+}{\thesubsection.}{0.5em}{}{}
+\titlespacing{\subsection}{0pt}{%
+  1.5em plus 0.1em minus 0.4em%
+}{0.5em plus 0.1em minus 0.15em}
+
+% Estilo y espaciado de títulos de subsubsecciones.
+\titleformat{\subsubsection}{%
+  \fontsize{11}{13}\selectfont\sffamily\bfseries\raggedright%
+}{\thesubsubsection.}{0.5em}{}{}
+\titlespacing{\subsubsection}{0pt}{%
+  1.4em plus 0.1em minus 0.35em
+}{0.5em plus 0.1em minus 0.15em}
+
+% Comandos personales 
+\def\X#1{$#1$ & \mintinline{latex}{#1}} % Leslie Lamport
+
+%%% Metadatos de este documento
+
+\title{Matemáticas} % título
+\author{Orientamat} % autor
+\date{\today} % fecha
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\bigskip
+
+\section{Introducción}
+
+Una de las ventajas de \LaTeX{} es la facilidad para incluir fórmulas o ecuaciones, que pueden extenderse a lo largo de varias líneas, conteniendo símbolos, operadores y delimitadores.
+
+Existen tres \emph{modos} en \LaTeX:
+\begin{description}
+    \item[Párrafo] Escribimos el texto como una sucesión de palabras separadas por líneas en blanco. El texto aparece justificado.
+    \item[Sin justificar] Se escribe igual, pero \LaTeX{} lo escribe en una línea de izquierda a derecha. Es lo que pasa, por ejemplo, al usar \mintinline{latex}{\mbox{el texto que sea, aunque no entre en la línea y salte al margen}}.
+    \item[Modo matemático] Se pueden usar símbolos (raíces, fracciones,...), todas las letras se consideran símbolos, que aparecen en itálica, y los espacios no se tienen en cuenta. El espaciado depende del tipo de símbolo.
+\end{description}
+
+
+\section{¿Cómo escribir matemáticas?}
+
+\subsection{Entornos matemáticos}
+
+Hay dos formas de incluir expresiones matemáticas en el texto:
+\begin{itemize}
+    \item En el mismo párrafo con el resto del texto o
+    \item centrado en una línea, o varias, aparte.
+\end{itemize}
+
+Para incluir matemáticas en el mismo párrafo podemos agrupar la expresión entre dólares, \mintinline{latex}{$...$}, o, mejor, \mintinline{latex}{\(...\)}.
+
+\begin{codigo-arriba}
+Las funciones $f(x)=x^{2}$ y \(g(x)=x^{3}\) son de clase \(C^{\infty}\) en su dominio.
+\end{codigo-arriba}
+
+Para incluir matemáticas en una línea separada usaremos \mintinline{latex}{\[...\]}. Los dobles dólares \emph{no} se recomiendan. Las ecuaciones en línea separada también se pueden escribir utilizando el entorno \texttt{equation} si queremos que las numere. En ese caso es importante añadirle una etiqueta para poder hacer referencia a dicha ecuación en otro momento. Para etiquetar usaremos el comando \mintinline{latex}{\label{etiqueta}} y nos referiremos a dicha ecuación con \mintinline{latex}{\ref{etiqueta}} (sólo el número de la ecuación) o 
+\mintinline{latex}{\eqref{etiqueta}} (el número de la ecuación entre paréntesis). 
+Por último, \mintinline{latex}{\tag{nombre}} se puede utilizar para que la ecuación tenga un nombre particular en lugar de la numeración habitual.
+
+
+\begin{codigo-arriba}
+Consideremos la ecuación 
+\begin{equation} \label{eq:grado2}
+    ax^2+bx+c=0,
+\end{equation}
+donde \(a\), \(b\) y \(c\) son números reales con $a \neq 0$. Su solución 
+general es
+\begin{equation} \label{eq:solucion}
+    x=\frac{-b \pm \sqrt{b^2-4ac}}{2a}. \tag{Solución}
+\end{equation}
+El número de soluciones reales depende del valor del \emph{discriminante}, 
+\[
+    \Delta = b^2-4ac.
+\]
+Si el discriminante es negativo, entonces la ecuación~(\ref{eq:grado2}) no 
+tiene soluciones reales.
+\end{codigo-arriba}
+\emph{Nota.} El símbolo \~ se usa para indicar un espacio que no se puede partir con lo que ``ecuación'' no se separa de la referencia que le sigue.
+
+El entorno \texttt{equation*} produce el mismo resultado que \mintinline{latex}{\[...\]}.
+
+\begin{codigo-lado}
+\begin{equation*}
+	\lim_{x \to 0} \frac{\sen(x)}{x}=1.
+\end{equation*}	
+\end{codigo-lado}
+
+
+
+\subsection{Espaciado horizontal}
+
+Los espacios dentro del modo matemático \emph{no} se tienen en cuenta. El espacio dentro de las fórmulas es distinto al espacio en modo texto.
+
+\begin{minted}{latex}
+Sea $x=1,2$ o $3$ con sea $x=1$, $2$ o $3$ y sean $a$, $b\in \mathbb{R}$.
+\end{minted}
+
+La forma correcta de escribirlo es la \emph{segunda} si queremos que
+\LaTeX{} use el espaciado que se considera correcto. \LaTeX{} puede manejar varias unidades para indicar espacios. Podemos dar las distancias en forma absoluta, centímetros por ejemplo, o relativa (la longitud de la letra m). Esta segunda forma suele ser mejor al tener en cuenta el tipo y el tamaño de letra usada. 
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+Orden & Significado & Ejemplo & Salida \\
+\midrule
+\mintinline{latex}{\,} & espacio pequeño (0.16667em) & \mintinline{latex}{$\int x\, dx$ } & $\int x\, dx$ \\
+\mintinline{latex}{\!} & espacio pequeño negativo & \mintinline{latex}{$\left(\frac{1}{y}\right)^{\!2}$} & $\left(\frac{1}{y}\right)^{\!2}$ \\
+\mintinline{latex}{\>}, \mintinline{latex}{\:} & espacio mediano (0.2222em) & \mintinline{latex}{a\:+\:b, $a+b$} & a\:+\:b, $a+b$ \\
+\mintinline{latex}{\negmedspace} & espacio mediano negativo & & \\
+\mintinline{latex}{\;}, \mintinline{latex}{\thickspace} & 0.2777em & \mintinline{latex}{a\:<\:b, $a<b$} & a\:<\:b, $a<b$ \\
+\mintinline{latex}{\quad} & 1em & & \\
+\mintinline{latex}{\qquad} & 2em & & \\
+\mintinline{latex}{\hspace{longitud}} & longitud & \mintinline{latex}{a \hspace{1cm} b} & a \hspace{1cm} b \\
+\mintinline{latex}{~} & espacio irrompible & \mintinline{latex}{por el teorema~2} & por el teorema~2\\
+\bottomrule
+\end{tabular}
+\end{table}
+Además de estos comandos, también son útiles \mintinline{latex}{\phantom{texto}} y \mintinline{latex}{\hphantom{texto}} (también existe \mintinline{latex}{\vphantom}) que dejan un hueco en horizontal o el espacio completo que ocupa el texto.
+\begin{codigo-arriba}
+Consideremos la función $f \colon \mathbb{R} \to \mathbb{R}$ definida
+como 
+\[
+f(x) = \frac{\sen(x)}{x}, \qquad (x \neq 0) \hphantom{hueco} \text{hueco}
+\]
+\end{codigo-arriba}
+
+\subsection{Letras diversas}
+
+Igual que en el texto normal, también se puede cambiar el aspecto de la fuente, de la letra, que se está usando. Por defecto, las letras en modo matemático aparecen en itálica, pero hay que tener en cuenta que \LaTeX{} las considera como símbolos separados, no como parte de una palabra. Esto afecta al espaciado entre las letras.
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\mintinline{latex}{\mathrm{...}} & letra redonda $\mathrm{123}$\\
+\mintinline{latex}{\mathit{...}} & letra cursiva $\mathit{123}$ \\
+\mintinline{latex}{\mathsf{...}} & letra palo seco $\mathsf{123}$ \\
+\mintinline{latex}{\mathbb{...}} & letra negrita de pizarra $\mathbb{N}, \mathbb{Q}$ \\
+\mintinline{latex}{\mathcal{...}} & letra caligráfica $\mathcal{ABC}$ \\
+\mintinline{latex}{\mathfrak{...}} & letra gótica $\mathfrak{ABC}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Además del alfabeto, el estilo indica a \LaTeX{} el tamaño que tiene que usar. Aunque debe quedar claro que, salvo en contadas ocasiones, no es necesario especificarlo y el tamaño se deduce de forma automática de la expresión.
+\begin{description}
+    \item[displaystyle] es el aspecto de las ecuaciones en línea aparte.
+    \item[textstyle] es el aspecto de las expresiones matemáticas en la misma línea.
+    \item[script] es el aspecto de los superíndices y subíndices.
+    \item[scripscript] si anidamos varios índices.
+\end{description}
+Además de que el tamaño sea mayor o menor, estos estilos afectan a cómo se escriben algunas operadores.
+\begin{codigo-arriba}
+\[ 
+	f(z)=\int_{C(a,r)} \frac{f(w)}{w-z} \,\mathrm{d} w, \quad \forall\, z \in D(a,r).
+\]
+\end{codigo-arriba}
+
+\section{Construcciones básicas}
+
+\subsection{Subíndices y superíndices}
+
+Comenzamos con un ejemplo en el que se incluyen dos de las construcciones más típicas: subíndices y superíndices. Se consiguen usando \verb+_+ y \verb+^+. Si el exponente contiene más de un dígito o letra hay que agruparlo entre llaves.
+\begin{codigo-lado}
+$2^{10}=1024, \quad 3^{2^5}=?$
+\end{codigo-lado}
+
+Si hemos cargado el paquete \texttt{mathtools}, podemos escribir índices \emph{antes} de la base con \mintinline{latex}{\prescript{}{}{}}:
+\begin{codigo-lado}
+$\prescript{a}{b}{C}_{d}^{e} + f'(x)^{2}$
+\end{codigo-lado}
+
+Especialmente con las ecuaciones en línea completa, hay construcciones en la que los sub y superíndices se acumulan. La orden \mintinline{latex}{\substack{}} permite apilar el texto, separando las filas con \mintinline{latex}{\\}. En la documentación del paquete \texttt{mathtools} se explican otras construcciones más elaboradas.
+\begin{codigo-lado}
+\[
+\sum_{\substack{i=1\\ j=123}} (i+j)
+\]
+\end{codigo-lado}
+
+\subsection{Fracciones y binomios} 
+Las fracciones son una de las construcciones más habituales en matemáticas. La forma básica de escribirlas es usando la orden \mintinline{latex}{\frac{numerador}{denominador}}. Por supuesto, esta orden se puede anidar las veces que sea necesario.
+\begin{codigo-lado}
+\[\frac{1+x}{2-\frac{x}{x+1}}\] 
+\end{codigo-lado}
+Como puedes ver, \LaTeX{} adapta el tamaño de las fracciones al entorno donde se encuentran, pero también se le puede indicar que tengan uno determinado.
+\begin{itemize}
+	\item \mintinline{latex}{\tfrac{}{}} es el tamaño de una fracción normal en mitad de una línea,
+	\item \mintinline{latex}{\dfrac{}{}} es el tamaño de las fracciones cuando la escribimos centrada en línea aparte,
+	\item \mintinline{latex}{\cfrac{}{}} se utiliza para fracciones continuadas, y
+	\item \mintinline{latex}{\frac{\splitfrac{numerador1}{numerador2}}{denominador}} se usa para escribir fracciones demasiado grandes. \mintinline{latex}{\frac{\splitdfrac{num1}{num2}}{den}} escribe la fracción un poco más grande.
+\end{itemize}
+\mintinline{latex}{\binom{}{}}, \mintinline{latex}{\tbinom{}{}} y \mintinline{latex}{\dbinom{}{}} se comportan igual, pero con números binómicos.
+\begin{codigo-arriba}
+\[
+\frac{1+x}{2-\frac{x}{x+1}} + \frac{1+\dfrac{1}{2}}{1-\frac{1}{2}}
+\]
+\[
+  a_0+\cfrac{1}{a_1+\cfrac{1}{a_2+\cfrac{1}{a_3+\cdots}}}
+\]    
+\[ a=\frac{
+          \splitfrac{xy + xy + xy + xy + xy}
+                    {+ xy + xy + xy + xy}
+}
+{z} =\frac{
+          \splitdfrac{xy + xy + xy + xy + xy}
+                    {+ xy + xy + xy + xy}
+    }{z} 
+\]
+\end{codigo-arriba}
+
+
+\subsection{Raíces}
+
+\mintinline{latex}{\sqrt[]{}} nos sirve para escribir raíces de cualquier orden. Recordemos que la parte entre corchetes es opcional.
+\begin{codigo-lado}
+$\sqrt[6]{x+y}=\sqrt[3]{\sqrt{x+y}}$
+\end{codigo-lado}
+
+Hay veces que hay que ajustar la altura: \mintinline{latex}{\leftroot{distancia}} y \mintinline{latex}{\uproot{distancia}} permiten hacer pequeños cambios a la posición del grado de la raíz.
+\begin{codigo-lado}
+	$\sqrt[\leftroot{2} \uproot{2} 6+x]{3}$	
+\end{codigo-lado}
+
+
+\subsection{Puntos suspensivos}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*8l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X\dots & \X\ldots & \X\cdots & \X\dotsc \\
+\X\dotsb & \X\dotsm & \X\dotsi & \X\dotso \\
+\X\vdots & \X\ddots & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Hay dos tipos de puntos suspensivos en \LaTeX: bajos o centrados. En la mayoría de las ocasiones \LaTeX{} decide cuál es la versión correcta que se ha de usar y es suficiente con usar la orden genérica \mintinline{latex}{\dots}, aunque podemos elegir entre una u otra versión usando \mintinline{latex}{\ldots} (abajo) o \mintinline{latex}{\cdots} (centrados).
+\begin{codigo-arriba}
+\[ 
+f(x_{1}, x_{2}, \dots, x_{n}) = x_{1} + x_{2} + \dots + x_{n}
+\]
+\end{codigo-arriba}
+Para decidir qué versión usa, \LaTeX{} se fija en el símbolo que sigue a los puntos. Además de abajo o centrados, las siguientes versiones hacen pequeños ajustes en el espacio alrededor:
+\begin{itemize}
+	\item \mintinline{latex}{\dotsc} para puntos suspensivos seguidos de una coma; 
+	\item \mintinline{latex}{\dotsb} para puntos suspensivos seguidos de un símbolo binario o de relación;
+	\item \mintinline{latex}{\dotsm} para puntos suspensivos seguidos de multiplicación;
+	\item \mintinline{latex}{\dotsi} para puntos suspensivos entre integrales;
+	\item \mintinline{latex}{\dotso} otros.
+\end{itemize}
+
+\mintinline{latex}{\vdots} y \mintinline{latex}{\ddots} se suelen usar como entradas en matrices.
+
+\emph{Nota:} los dos puntos, :, y la orden \mintinline{latex}{\colon} producen los dos puntos esperados como salida, pero su significado es distinto. El primero es un operador relacional y el segundo no; en consecuencia, el espacio alrededor de ellos es distinto. El primero lo usamos, por ejemplo, al escribir un conjunto y el segundo al escribir funciones.
+\begin{codigo-arriba}
+Sea $f \colon A \to B$ definida como $f(x)=\sqrt{x}$, donde 
+$A= \{ x \in \mathbb{R} : x \geq 0 \}$.
+\end{codigo-arriba}
+
+\subsection{Acentos y gorros}
+
+Los acentos normales no funcionan en modo matemático. Dependiendo del tipo de marca, tenemos los siguientes comandos:
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*8l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X{\acute{x}}  & \X{\bar{x}}   & \X{\vec{x}}   & \X{\mathring{x}} \\
+\X{\grave{x}}  & \X{\breve{x}} & \X{\check{x}} & \X{\widetilde{xxx}} \\
+\X{\dot{x}}    & \X{\ddot{x}}  & \X{\dddot{x}} & \X{\widehat{xxx}} \\
+\X{\tilde{x}}  & \X{\hat{x}}    &  & &  & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Las flechas \mintinline{latex}{\vec{x}} producen un resultado, algunas veces, que no es el mejor. El paquete \texttt{esvect}, cargado en la cabecera del documento, contiene la orden \mintinline{latex}{\vv{x}} que soluciona esto.
+\begin{codigo-lado}
+$\vec{x}$, $\vec{xx}$, $\vv{x}$, $\vv{xx}$
+\end{codigo-lado}
+
+Además de rayas, \mintinline{latex}{overline} y \mintinline{latex}{underline}, existen más formas de señalar una parte de una expresión. Por ejemplo, usando llaves
+\begin{codigo-arriba}
+\[
+\overbrace{a+b+\underbrace{c+e+d}+f+g}^{n}+\underbrace{a+b}_{(2)}
+\]
+\end{codigo-arriba}
+o flechas
+\begin{codigo-arriba}
+\begin{gather*}
+   \overleftarrow{a} \quad \overrightarrow{aa} \\
+   \overleftrightarrow{aaa} \quad \underleftarrow{aaaa} \\
+   \underrightarrow{aaaaa}  \quad \underleftrightarrow{aaaaaa}
+\end{gather*}
+\end{codigo-arriba}
+
+
+%\subsection{Integrales, sumatorios, productos}
+%
+%FALTA
+%
+%\subsection{Conjuntos}
+%
+%FALTA
+
+\subsection{Texto en fórmulas}
+
+%\mintinline{latex}{\text, \intertext, \shortintertext}
+
+Ya hemos visto que el espacio entre caracteres en el modo matemático es distinto al espaciado en el modo texto. Cuando en una expresión matemática queremos escribir texto, se lo indicamos a \LaTeX{} con la orden \mintinline{latex}{\text{...}}. Recuerda que las órdenes se pueden anidar.
+\begin{codigo-arriba}
+	\[ 
+	f(x)=x^2 + \sqrt{x}, \quad \text{si se cumple que $x>0$.}
+	\]
+\end{codigo-arriba}
+Los comandos \mintinline{latex}{\intertext{...}} y \mintinline{latex}{\shortintertext{...}} se utilizan para incluir texto en ecuaciones que ocupan varias líneas. Están explicados con un poco más de detalle en la sección~\ref{sec:misc-ecuaciones}.
+
+\subsection*{Letras griegas}    
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*8l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X\alpha        &\X\theta       & \X\tau      &         &        \\
+\X\beta         &\X\vartheta    &\X\pi          &\X\upsilon     \\
+\X\gamma        &\X\gamma       &\X\varpi       &\X\phi         \\
+\X\delta        &\X\kappa       &\X\rho         &\X\varphi      \\
+\X\epsilon      &\X\lambda      &\X\varrho      &\X\chi         \\
+\X\varepsilon   &\X\mu          &\X\sigma       &\X\psi         \\
+\X\zeta         &\X\nu          &\X\varsigma    &\X\omega       \\
+\X\eta          &\X\xi                                          \\
+                                                                \\
+\X\Gamma        &\X\Lambda      &\X\Sigma       &\X\Psi         \\
+\X\Delta        &\X\Xi          &\X\Upsilon     &\X\Omega       \\
+\X\Theta        &\X\Pi          &\X\Phi\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+    
+\subsection*{Operadores}
+
+ Dependiendo del tipo de operador el espaciado puede ser distinto.
+
+
+\selectlanguage{english}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}*6l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X\arccos & \X\cos & \X\csc \\
+\X\exp &  \X\ker & \X\limsup \\
+\X\min & \X\sinh & \X\arcsin \\
+\X\cosh & \X\deg &  \X\gcd \\ 
+\X\lg & \X\ln & \X\Pr \\ 
+\X\sup & \X\arctan &  \X\cot \\
+\X\det & \X\hom & \X\lim \\ 
+\X\log & \X\sec &  \X\tan \\
+\X\arg & \X\coth & \X\dim  \\
+\X\inf & \X\liminf & \X\max \\
+\X\sin & \X\tanh & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\selectlanguage{spanish}
+
+Si cargamos \mintinline{latex}{\usepackage[spanish]{babel}} en la cabecera, tenemos a nuestra disposición algunos operadores más y otros cambian su salida (acentos).
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*6l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X\lim & \X\limsup & \X\liminf \\
+\X\bmod & \X\pmod & \X\sen \\
+\X\tg &  \X\arcsen & \X\arctg \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{codigo-arriba}
+\[ \max \{ \dim(X) \cos(y), \log(y)\} = \liminf_{x \to 0^{+}} \exp(x^2)  \arcsen(x) \]
+\end{codigo-arriba}
+Aunque la lista es bastante completa, si es necesario, podemos definir operadores extra. La orden \mintinline{latex}{\DeclareMathOperator{\comando}{resultado}} en la cabecera nos permite añadir tantos operadores como deseemos. Por ejemplo, en este documento hemos añadido la orden
+\begin{minted}{latex}
+\DeclareMathOperator{\dist}{distancia}}
+\end{minted}
+lo que nos permite usar \mintinline{latex}{\dist} cuando lo necesitemos:
+\begin{codigo-lado}
+$\dist(x,y) = |x-y|$
+\end{codigo-lado}
+\mintinline{latex}{\DeclareMathOperator*{\comando}{resultado}} se usa para definir operadores que admiten subíndices y superíndices encima y debajo en modo centrado, como le ocurre a \mintinline{latex}{\lim}. Por ejemplo, añadiendo 
+\begin{minted}{latex}
+DeclareMathOperator*{\limite}{límite}
+\end{minted}
+en la cabecera, podemos hacer lo siguiente:
+\begin{codigo-lado}
+\[
+\limite_{x \to 0} x^{2}=0
+\]
+\end{codigo-lado}
+
+
+\subsection{Símbolos}
+
+Hay muchísimos símbolos que se pueden escribir en \LaTeX. Muchos vienen incluidos por defecto y muchos más se puede usar después de cargar el paquete correspondiente. En la bibliografía,  hay un enlace a la lista completa (ver \cite{CLSL}). 
+
+Es importante saber que \LaTeX{} clasifica a los símbolos en diferentes categorías y, dependiendo de esto, el comportamiento puede variar. Hay símbolos que necesitan algo a izquierda y derecha (piensa en el signo ${}+{}$) y otros que no. Hay algunos que, dependiendo de cómo los nombremos, tienen un comportamiento u otro. Por ejemplo, la raya \mintinline{latex}{|} y la orden \mintinline{latex}{\pmid} producen el mismo resultado, pero el espacio es distinto. \mintinline{latex}{\mid} es un símbolo para indicar relación y se usa, por ejemplo, para escribir la condición que verifican los elementos de un conjunto, a diferencia del símbolo de divisor.
+\begin{codigo-arriba}
+Correcto $a|b$  vs. incorrecto $a \mid b$.
+\[\{ n \in \mathbb{N} \mid \text{$n$ es par} \}\]
+\end{codigo-arriba}
+
+\subsubsection{Operaciones binarias}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*6l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X{*} &
+\X{+} &
+\X{-} \\
+\X{\amalg} &
+\X{\ast} &
+\X{\barwedge} \\
+\X{\bigcirc} &
+\X{\bigtriangledown} &
+\X{\bigtriangleup} \\
+\X{\boxdot} &
+\X{\boxminus} &
+\X{\boxplus} \\
+\X{\boxtimes} &
+\X{\bullet} &
+\X{\cap} \\
+\X{\Cap} &
+\X{\cdot} &
+\X{\centerdot} \\
+\X{\circ} & 
+\X{\circledast} &
+\X{\circledcirc} \\
+\X{\circleddash} &
+\X{\cup} &
+\X{\Cup} \\
+\X{\curlyvee} &
+\X{\curlywedge} &
+\X{\dagger} \\
+\X{\ddagger} &
+\X{\diamond} &
+\X{\div} \\
+\X{\divideontimes} & 
+\X{\dotplus} &
+\X{\doublebarwedge} \\
+\X{\gtrdot} &
+\X{\intercal} &
+\X{\leftthreetimes} \\
+\X{\lessdot} &
+\X{\ltimes} &
+\X{\mp} \\
+\X{\odot} &
+\X{\ominus} &
+\X{\oplus} \\
+\X{\oslash} & 
+\X{\otimes} &
+\X{\pm} \\
+\X{\rightthreetimes} & 
+\X{\rtimes} &
+\X{\setminus} \\
+\X{\smallsetminus} &
+\X{\sqcap} &
+\X{\sqcup} \\
+\X{\star} &
+\X{\times} &
+\X{\triangleleft} \\
+\X{\triangleright} &
+\X{\uplus} &
+\X{\vee} \\
+\X{\veebar} &
+\X{\wedge} &
+\X{\wr} \\
+\bottomrule
+\end{tabular}
+\end{table}
+%\synonyms \alias{land}, \alias{lor}, \alias{doublecup}, \alias{doublecap}
+
+\subsubsection{Relaciones}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*6l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X{<} & 
+\X{=} & 
+\X{>} \\
+\X{\approx} & 
+\X{\approxeq} & 
+\X{\asymp} \\
+\X{\backsim} & 
+\X{\backsimeq} & 
+\X{\bumpeq} \\
+\X{\Bumpeq} & 
+\X{\circeq} & 
+\X{\cong} \\
+\X{\curlyeqprec} & 
+\X{\curlyeqsucc} & 
+\X{\doteq} \\
+\X{\doteqdot} & 
+\X{\eqcirc} & 
+\X{\eqsim} \\ 
+\X{\eqslantgtr} & 
+\X{\eqslantless} & 
+\X{\equiv} \\
+\X{\fallingdotseq} & 
+\X{\geq} & 
+\X{\geqq} \\
+\X{\geqslant} & 
+\X{\gg} & 
+\X{\ggg} \\
+\X{\gnapprox} & 
+\X{\gneq} & 
+\X{\gneqq} \\ 
+\X{\gnsim} & 
+\X{\gtrapprox} & 
+\X{\gtreqless} \\
+\X{\gtreqqless} & 
+\X{\gtrless} & 
+\X{\gtrsim} \\
+\X{\gvertneqq} & 
+\X{\leq} & 
+\X{\leqq} \\
+\X{\leqslant} & 
+\X{\lessapprox} & 
+\X{\lesseqgtr} \\ 
+\X{\lesseqqgtr} & 
+\X{\lessgtr} & 
+\X{\lesssim} \\ 
+\X{\ll} & 
+\X{\lll} & 
+\X{\lnapprox} \\ 
+\X{\lneq} & 
+\X{\lneqq} & 
+\X{\lnsim} \\ 
+\X{\lvertneqq} & 
+\X{\ncong} & 
+\X{\neq} \\ 
+\X{\ngeq} & 
+\X{\ngeqq} & 
+\X{\ngeqslant} \\ 
+\X{\ngtr} & 
+\X{\nleq} & 
+\X{\nleqq} \\ 
+\X{\nleqslant} & 
+\X{\nless} & 
+\X{\nprec} \\ 
+\X{\npreceq} & 
+\X{\nsim} & 
+\X{\nsucc} \\ 
+\X{\nsucceq} & 
+\X{\prec} & 
+\X{\precapprox} \\ 
+\X{\preccurlyeq} & 
+\X{\preceq} & 
+\X{\precnapprox} \\ 
+\X{\precneqq} & 
+\X{\precnsim} & 
+\X{\precsim} \\
+\X{\risingdotseq} & 
+\X{\sim} & 
+\X{\simeq} \\ 
+\X{\succ} & 
+\X{\succapprox} & 
+\X{\succcurlyeq} \\
+\X{\succeq} & 
+\X{\succnapprox} & 
+\X{\succneqq} \\ 
+\X{\succnsim} & 
+\X{\succsim} & 
+\X{\thickapprox} \\
+\X{\thicksim} & 
+\X{\triangleq} &  \\
+\bottomrule
+\end{tabular}
+\end{table}
+%  \synonyms \alias{ne}, \alias{le}, \alias{ge}, \alias{Doteq}, \alias{llless}, \alias{gggtr}
+
+\subsubsection{Flechas}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*6l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X{\circlearrowleft} & 
+\X{\circlearrowright} & 
+\X{\curvearrowleft} \\
+\X{\curvearrowright} & 
+\X{\downdownarrows} & 
+\X{\downharpoonleft} \\ 
+\X{\downharpoonright} & 
+\X{\hookleftarrow} & 
+\X{\hookrightarrow} \\
+\X{\leftarrow} & 
+\X{\Leftarrow} & 
+\X{\leftarrowtail} \\
+\X{\leftharpoondown} & 
+\X{\leftharpoonup} & 
+\X{\leftleftarrows} \\ 
+\X{\leftrightarrow} & 
+\X{\Leftrightarrow} & 
+\X{\leftrightarrows} \\ 
+\X{\leftrightharpoons} & 
+\X{\leftrightsquigarrow} & 
+\X{\Lleftarrow} \\
+\X{\longleftarrow} & 
+\X{\Longleftarrow} & 
+\X{\longleftrightarrow} \\ 
+\X{\Longleftrightarrow} & 
+\X{\longmapsto} & 
+\X{\longrightarrow} \\ 
+\X{\Longrightarrow} & 
+\X{\looparrowleft} & 
+\X{\looparrowright} \\ 
+\X{\Lsh} & 
+\X{\mapsto} & 
+\X{\multimap} \\ 
+\X{\nLeftarrow} & 
+\X{\nLeftrightarrow} & 
+\X{\nRightarrow} \\
+\X{\nearrow} & 
+\X{\nleftarrow} & 
+\X{\nleftrightarrow} \\ 
+\X{\nrightarrow} & 
+\X{\nwarrow} & 
+\X{\rightarrow} \\ 
+\X{\Rightarrow} & 
+\X{\rightarrowtail} & 
+\X{\rightharpoondown} \\ 
+\X{\rightharpoonup} & 
+\X{\rightleftarrows} & 
+\X{\rightleftharpoons} \\ 
+\X{\rightrightarrows} & 
+\X{\rightsquigarrow} & 
+\X{\Rrightarrow} \\
+\X{\Rsh} & 
+\X{\searrow} & 
+\X{\swarrow} \\ 
+\X{\twoheadleftarrow} & 
+\X{\twoheadrightarrow} & 
+\X{\upharpoonleft} \\ 
+\X{\upharpoonright} & 
+\X{\upuparrows} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+% \synonyms \alias{gets}, \alias{to}, \alias{restriction}
+
+
+\subsubsection{Miscelánea}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*6l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X{\backepsilon} & 
+\X{\because} & 
+\X{\between} \\
+\X{\blacktriangleleft} & 
+\X{\blacktriangleright} & 
+\X{\bowtie} \\
+\X{\dashv} & 
+\X{\frown} & 
+\X{\in} \\
+\X{\mid} & 
+\X{\models} & 
+\X{\ni} \\ 
+\X{\nmid} & 
+\X{\notin} & 
+\X{\nparallel} \\ 
+\X{\nshortmid} & 
+\X{\nshortparallel} & 
+\X{\nsubseteq} \\ 
+\X{\nsubseteqq} & 
+\X{\nsupseteq} & 
+\X{\nsupseteqq} \\ 
+\X{\ntriangleleft} & 
+\X{\ntrianglelefteq} & 
+\X{\ntriangleright} \\ 
+\X{\ntrianglerighteq} & 
+\X{\nvdash} & 
+\X{\nVdash} \\ 
+\X{\nvDash} & 
+\X{\nVDash} & 
+\X{\parallel} \\
+\X{\perp} & 
+\X{\pitchfork} & 
+\X{\propto} \\ 
+\X{\shortmid} & 
+\X{\shortparallel} & 
+\X{\smallfrown} \\ 
+\X{\smallsmile} & 
+\X{\smile} & 
+\X{\sqsubset} \\ 
+\X{\sqsubseteq} & 
+\X{\sqsupset} & 
+\X{\sqsupseteq} \\ 
+\X{\subset} & 
+\X{\Subset} & 
+\X{\subseteq} \\ 
+\X{\subseteqq} & 
+\X{\subsetneq} & 
+\X{\subsetneqq} \\ 
+\X{\supset} & 
+\X{\Supset} & 
+\X{\supseteq} \\ 
+\X{\supseteqq} & 
+\X{\supsetneq} & 
+\X{\supsetneqq} \\ 
+\X{\therefore} & 
+\X{\trianglelefteq} & 
+\X{\trianglerighteq} \\ 
+\X{\varpropto} & 
+\X{\varsubsetneq} & 
+\X{\varsubsetneqq} \\ 
+\X{\varsupsetneq} & 
+\X{\varsupsetneqq} & 
+\X{\vartriangle} \\ 
+\X{\vartriangleleft} & 
+\X{\vartriangleright} & 
+\X{\vdash} \\
+\X{\Vdash} & 
+\X{\vDash} & 
+\X{\Vvdash} \\
+\bottomrule
+\end{tabular}
+\end{table}
+%  \synonyms \alias{owns}
+
+\subsubsection{Símbolos derivados de letras}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*6l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X\bot & \X\forall & \X\imath \\
+ \X{}  & \X\Top & \X\ell  \\
+\X\hbar & \X\in & \X\partial \\
+\X\wp & \X\exists & \X\Im \\
+\X\jmath & \X\Re \\
+\bottomrule  
+\end{tabular}
+\end{table}
+
+\subsubsection{Símbolos de tamaño variable}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*6l@{}}
+\toprule
+Salida & Código & Salida & Código & Salida & Código \\
+\midrule
+\X\bigcap & \X\bigotimes & \X\bigwedge \\
+\X\prod & \X\bigcup & \X\bigsqcup \\
+\X\coprod & \X\sum & \X\bigodot \\
+\X\biguplus & \X\int & \X\bigoplus \\
+\X\bigvee & \X\oint & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Delimitadores}
+
+Algunos símbolos se utilizan para agrupar o separar parte de una expresión como los paréntesis, corchetes, barras, corchetes. Su tamaño se puede elegir o podemos dejar que \LaTeX{} lo adapte automáticamente al texto que están agrupando si vienen definidos por parejas. Los delimitadores que podemos usar son los siguientes:
+\begin{enumerate}
+    \item Paréntesis: 
+   	\begin{codigo-lado}
+		$(x+y)^2$ o $\left( x^2+y \right)^3$
+	\end{codigo-lado}
+    \item Corchetes: 
+    \begin{codigo-lado}
+	    $[a,b]$ o $\left[ \frac{1}{2},3 \right]$
+    \end{codigo-lado}
+    \item Llaves: 
+    \begin{codigo-arriba}
+	    el conjunto $\{1,2,3\}$ o $\left\{ \frac{1}{n} : n \in \mathbb{N} \right\}$
+    \end{codigo-arriba}
+    \item Ángulos: 
+    \begin{codigo-arriba}
+	    el producto escalar $\langle x,y \rangle$, $\left\langle \frac{x+y}{2},x-y \right\rangle$
+    \end{codigo-arriba}
+    \item Barra sencilla: 
+    \begin{codigo-lado}
+    $|x|$ o $\left| \frac{x}{2} \right|$
+    \end{codigo-lado}
+    \item Barras dobles: 
+    \begin{codigo-arriba}
+    $\left\| \frac{1}{2} \left( x+y \right) \right\| \leq \frac{1}{2} \left( \| x \| + \|  y \| \right)$ 
+    \end{codigo-arriba}
+\end{enumerate}
+
+Si decidimos elegir de forma manual el tamaño de los delimitadores, podemos usar las siguientes opciones: \mintinline{latex}{\big, \Big, \bigg, o \Bigg} o añadiendo l y r para indicar el lado del delimitador 
+\begin{codigo-arriba}
+\[
+(x+y \bigr)^{2} \neq \bigg[ a+b \Biggr\}
+\]
+\end{codigo-arriba}
+
+Un par de comentarios antes de pasar a otro apartado:
+\begin{itemize}
+    \item Por supuesto, se pueden mezclar delimitadores de dos tipos distintos: 
+    \begin{codigo-lado}
+    	$\left(x,\frac{1}{2} \right]$
+	\end{codigo-lado}
+    \item Hay que escribir la pareja completa, left y right. Si se quiere que no aparezca nada en alguno de los dos lados, usaremos el punto para indicarlo en el lugar correspondiente:
+    \begin{codigo-lado}
+    \[ 
+    \left\{ \frac{1}{2}, \frac{1}{3}, \ldots \right. 
+    \]
+    \end{codigo-lado}
+\end{itemize}
+
+\subsubsection*{Una aplicación: valor absoluto y norma}
+
+Hay parejas de delimitadores que se usan con mucha frecuencia. Por ejemplo, el valor absoluto, el módulo o la norma son muy comunes. Es cómodo definir un comando que simplifique su escritura. Usando \LaTeX{}, podemos definir los comandos \mintinline{latex}{\abs} y \mintinline{latex}{\norma} añadiendo en la cabecera las siguientes líneas
+\begin{minted}{latex}
+\newcommand*\abs[1]{\left\lvert#1\right\rvert}
+\newcommand*\norma[1]{\left\lVert#1\right\rVert}
+\end{minted}
+Si hemos añadido estas dos líneas en la cabecera, podemos usar los comandos \mintinline{latex}{\abs} y \mintinline{latex}{\norma} de la siguiente forma
+\begin{codigo-lado}
+$\abs{x+2} = \norma{x+2}$
+\end{codigo-lado}
+
+
+Una segunda opción, la que hay en este documento, es usar la orden \mintinline{latex}{\DeclarePairedDelimiter} del paquete \texttt{mathtools}
+\begin{minted}{latex}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norma{\lVert}{\rVert}
+\end{minted}
+en la cabecera del documento. Esta orden permite usar \mintinline{latex}{\abs} de tres formas:
+\begin{itemize}
+	\item \mintinline{latex}{\abs{...}} que no ajusta las barras al contenido,
+	\item \mintinline{latex}{\abs*{...}} que ajusta las barras al contenido, y
+	\item \mintinline{latex}{\abs[\bigg]{...}} que permite especificar un tamaño concreto.
+\end{itemize}
+\begin{codigo-arriba}
+	\[\dist \left(x-\frac{y}{2} \right)
+	=\abs{x-\frac{y}{2}}
+	=\abs*{x-\frac{y}{2}}
+	=\abs[\Bigg]{x-\frac{y}{2}}\]
+\end{codigo-arriba}
+
+
+
+\subsection{Flechas extensibles}
+
+\mintinline{latex}{\xleftarrow[abajo]{arriba}} y \mintinline{latex}{\xrightarrow[abajo]{arriba}} se usan para escribir flechas que se acomodan al texto que se ponga encima o debajo. Recuerda que las opciones las ponemos entre corchetes: sólo es obligatorio escribir, aunque sea vacío, lo que va encima de la flecha.
+\begin{codigo-arriba}
+\[
+\frac{\sen x}{x} \xrightarrow{x \to 0^{-}} 1 \xleftarrow[x \to 0^{+}]{} \frac{x}{\sin x} 
+\]
+\end{codigo-arriba}
+Además de estas dos órdenes, después de cargar el paquete \texttt{mathtools}, tenemos disponibles algunas más.
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}*4l@{}}
+\toprule
+Salida & Código & Salida & Código \\
+\midrule
+\X{\xleftarrow[sub]{sup}} & \X{\xrightarrow[sub]{sup}} \\
+\X{\xleftrightarrow[sub]{sup}} & \X{\xLeftarrow[sub]{sup}} \\
+\X{\xhookleftarrow[sub]{sup}} &  \X{\xmapsto[sub]{sup}} \\
+\X{\xrightharpoondown[sub]{sup}} & \X{\xleftharpoondown[sub]{sup}} \\
+\X{\xrightleftharpoons[sub]{sup}} & \X{\xrightharpoonup[sub]{sup}} \\ 
+\X{\xleftharpoonup[sub]{sup}} & \X{\xleftrightharpoons[sub]{sup}} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Matrices}
+
+El entorno básico es \texttt{matrix}. Las columnas se separan con \& y las filas con \mintinline{latex}{\\}. Las entradas de la matriz están centradas. Los delimitadores los elegimos nosotros.
+\begin{codigo-lado}
+\[
+\left( 
+\begin{matrix}
+1   & 2 & 3 \\
+x+y & -1 & 1 
+\end{matrix}
+\right]
+\]
+\end{codigo-lado}
+Existen variantes que incluyen los paréntesis (\texttt{pmatrix}), corchetes (\texttt{bmatrix}), una barra (\texttt{vmatrix}), barras dobles (\texttt{Vmatrix}) o llaves (\texttt{Bmatrix}).
+\begin{codigo-lado}
+\[
+\det \begin{pmatrix} 
+	a & b \\
+	c & d 
+	\end{pmatrix} = 
+	\begin{vmatrix} 
+	a & b \\
+	c & d 
+	\end{vmatrix}
+\]	
+\end{codigo-lado}
+
+Un variante de \texttt{matrix} es el entorno \texttt{array}: funciona igual salvo que se puede elegir el alinemiento de cada columna (l,c,r).
+\begin{codigo-lado}
+\[
+\left(
+\begin{array}{rc}
+-1 & 23 \\
+121 & 2
+\end{array}
+\right)
+\]
+\end{codigo-lado}
+
+\subsection{Unidades}
+
+Las unidades se escriben en letra redonda y con un espacio entre el número y la unidad. Hay varios paquetes que ayudan a escribir esto de la forma correcta. Uno de los más populares es \texttt{siunitx}. Entre otras muchas cosas permite formatear el aspecto de los números y unidades. Además incluye mecanismos para escribir columnas en tablas alineadas al punto decimal y multitudes de posibilidades de personalización.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+Código & Salida \\
+\midrule
+\mintinline{latex}{\num{1000000.23456}} & \num{1000000.23456} \\
+\mintinline{latex}{\SI{3}{\metre\per\second}} & \SI{3}{\metre\per\second} \\
+\bottomrule
+\end{tabular}
+\end{table}
+El \mintinline{latex}{\SI{100}{\percent}}, \SI{100}{\percent}, de los detalles, incluyendo la lista de unidades o cómo añadir alguna que falte se puede consultar en el manual de \texttt{siunitx}.
+
+\section{Ecuaciones en varias líneas}
+
+Vamos a usar el entorno \texttt{equation} para agrupar las expresiones que vayamos a escribir y, sobre todo, para poder usar etiquetas y referirnos a ellas posteriormente. 
+
+Hay varias reglas genéricas para todos los entornos que vamos a usar:
+\begin{itemize}
+	\item Si le añadimos una $*$ al entorno, obtenemos la versión sin numerar;
+	\item \verb+\\+ se utiliza para partir la línea;
+	\item \verb+\\+ se usa en todas las líneas, menos en la última;
+	\item \verb+&+ se usa, en los entornos que lo permitan, para indicar un punto común donde se alinean las expresiones;
+	\item No se pueden dejar líneas en blanco;
+	\item No se dejan líneas en blanco antes de una ecuación.
+\end{itemize}
+
+\subsection{Una ecuación en varias líneas}
+
+Sólo aparece un número para toda la expresión.
+
+\subsubsection*{Una expresión alineada: el entorno split}
+
+Comenzamos con el caso más simple: una ecuación que, debido a su longitud, tenemos que partir. El entorno \texttt{split} ocupa toda la ecuación y recordemos que usaremos \& para indicar el punto donde se alinean las ecuaciones y \textbackslash\textbackslash para indicar nueva línea.
+\begin{codigo-lado}
+\begin{equation} \label{eq:ejemplo-split}
+	\begin{split}
+		a & = b+c-d\\
+		  & \quad {}+e-f\\
+          & = g+h\\
+          & = i
+\end{split}
+\end{equation}
+\end{codigo-lado}
+
+\subsubsection*{Una ecuación sin alinear: el entorno multline}
+
+El entorno \texttt{multline} escribe la primera línea a la izquierda, la última a la derecha y las intermedias centradas.
+
+\begin{codigo-arriba}
+El resultado de desarrollar \((a+b)^{30}\) es
+\begin{multline*}
+b^{30}+30 a b^{29}+435 a^2 b^{28}+4060 a^3 b^{27} + 27405 a^4 b^{26} 
++ 142506 a^5 b^{25} + 593775 a^6 b^{24}\\ 
++ 2035800 a^7 b^{23} + 5852925 a^8 b^{22} + 14307150 a^9 b^{21} + 30045015 a^{10} b^{20} \\
++ \dots +  14307150 a^{21} b^9 + 5852925 a^{22} b^8 
++ 2035800 a^{23} b^7 + 593775 a^{24} b^6 \\
++ 142506 a^{25} b^5 + 27405 a^{26} b^4 + 4060 a^{27} b^{3} + 435 a^{28} b^2 
++30 a^{29} b + a^{30} .
+\end{multline*}
+\end{codigo-arriba}
+
+\subsection{Varias ecuaciones}
+
+\subsubsection*{Sin alinear: el entorno gather}
+
+El entorno \texttt{gather} escribe las líneas centradas, cada una con su correspondiente numeración.
+\begin{codigo-lado}
+\begin{gather}
+a_1 = b_1 + c_1 \label{eq:gather1}\\
+a_2 = b_2 + c_2 - d_2 + e_2 \label{eq:gather2}
+\end{gather}
+\end{codigo-lado}
+Observa que, como cada ecuación está numerada, podemos añadir una etiqueta a cada una para hacer referencia a ellas en otro momento.
+
+\subsubsection*{Varias ecuaciones con alineamiento}
+
+Hay tres entornos para escribir este tipo de expresiones: \texttt{align}, \texttt{alignat} y \texttt{flalign}. 
+
+\subsubsection*{align}
+
+Comenzamos por el primero, quizá el más común de todos. Con \texttt{align} podemos escribir varias ecuaciones, alineadas en un cierto punto
+\begin{codigo-arriba}
+	\begin{align}
+		a_1 & = b_1 + c_1\\
+		a_2 & = b_2 + c_2 - d_2 + e_2,
+	\end{align}
+\end{codigo-arriba}
+o en varios
+\begin{codigo-arriba}
+	\begin{align}
+	a_{11} & = b_{11} & a_{12} & = b_{12}\\
+	a_{21} & = b_{21} & a_{22} & = b_{22}+c_{22}.
+	\end{align}
+\end{codigo-arriba}
+Por ejemplo, podemos usar este entorno para añadir una columna donde incluir un texto, corto, explicando los pasos que vamos dando.
+\begin{codigo-arriba}
+	\begin{align*}
+		\sum_{j=n}^{kn} \log\left( \frac{j}{j-1}\right) & =\log \left( kn\right)-\log \left( n-1\right) & \text{(usando que esto y lo otro)} \\
+			& = \log \left( \frac{kn}{n-1}\right) & \text{(hacemos cosas)}\\
+			& = \log \left( \frac{kn-k+k}{n-1}\right) & \text{(deshacemos)} \\
+			& = \log\left( k+\frac{k}{n-1}\right) .
+	\end{align*}
+\end{codigo-arriba}	
+No tenemos un control demasiado preciso sobre la separación entre las columnas y el texto; lo más que podemos conseguir es separarlo más añadiendo columnas extra sin contenido, esto es, añadiendo más~\&.
+
+\subsubsection*{alignat}
+
+\texttt{alignat} es una variante de \texttt{align} que permite especificar la separación entre columnas. Por defecto no hay ninguna separación. Lo que hace \texttt{alignat} es ir colocando pares de columnas alineadas a la derecha y a la izquierda y dicho número hay que indicárselo al comienzo. Observa en el siguiente ejemplo cómo la separación entre los dos grupos de ecuaciones se marca con la orden \mintinline{latex}{\qquad}. Prueba a cambiarla por, por ejemplo, \mintinline{latex}{\hspace{1cm}}.
+\begin{codigo-arriba} 
+	\begin{alignat}{2} 
+		\label{eq:alignat-ejemplo1}
+		a_{11} & = b_{11} & \qquad a_{13} & = b_{12}\\
+		\label{eq:alignat-ejemplo2}
+		a_{21} + a_{22} & = b_{21} &        a_{23} & = b_{22} + c_{22}
+	\end{alignat}
+\end{codigo-arriba}
+También podemos aprovechar que no deja espacio entre columnas para alinear un sistema de ecuaciones con huecos.
+\begin{codigo-lado}
+	\begin{alignat*}{2}
+	a_1 & = b_1 + c_1 &  & + e_1-f_1\\
+	a_2 & = b_2 + c_2 & {}- d_2 & + e_2 
+	\end{alignat*}
+\end{codigo-lado}
+
+
+\subsubsection*{flalign}
+
+\texttt{flalign}, \emph{full length align}, utiliza la anchura completa de la línea para escribir las ecuaciones. 
+\begin{codigo-arriba}
+	\begin{flalign}
+		a_{11} & = b_{11} & a_{12} & = b_{12}\\
+		a_{21} & = b_{21} & a_{22} & = b_{22}+c_{22}
+	\end{flalign}
+\end{codigo-arriba}
+
+\subsection{Entornos subsidiarios}
+
+Por entornos subsidiarios, se entienden partes de una ecuación que tienen el aspecto de los entornos que hemos visto antes: align, gather,... Su utilidad es ser los bloques con los construir expresiones más complicadas. Vamos a ver algunos de ellos.
+\begin{itemize}
+	\item \texttt{aligned}: la versión subsidiaria de \texttt{align}.
+	\item \texttt{gathered}: versión subsidiaria de \texttt{gather}.
+	\item \texttt{cases}: útil para escribir funciones a trozos.
+\end{itemize}
+Los dos primeros entornos admiten como opción c, t, b para indicar si se están centrados verticalmente, arriba o abajo.
+\begin{codigo-arriba}
+\[
+\left.
+\begin{aligned}[c]
+ x & = 3 + \mathbf{p} + \alpha\\
+      y & = 4 + \mathbf{q}\\
+      z & = 5 + \mathbf{r}\\
+      u & = 6 + \mathbf{s} \\
+      \beta & = 1
+\end{aligned} \right\}
+\text{\quad usando\quad}
+\left[
+\begin{gathered}
+      \mathbf{p} = 5 + a + \alpha\\
+      \mathbf{q} = 12\\
+      \mathbf{r} = 13\\
+      \mathbf{s} = 11 + d
+\end{gathered}
+\right.
+\]
+\end{codigo-arriba}
+El entorno \texttt{cases} añade la llave de forma automática y tienen dos columnas para escribir definición y dominio de cada trozo de una función.
+\begin{codigo-lado}
+\[	
+f(x) = \begin{cases}
+			x^2, & \text{si $x>0$,} \\
+			1-x, & \text{si $x \leq 0$.}
+	   \end{cases}
+\]			
+\end{codigo-lado}
+
+\subsection{Miscelánea} \label{sec:misc-ecuaciones}
+
+\begin{itemize}
+	\item \mintinline{latex}{\displaybreak} se puede usar para permitir que \LaTeX{} divida una página en mitad de una ecuación que ocupa varias líneas. Se coloca justo antes de \textbackslash\textbackslash.
+	\item \mintinline{latex}{\allowdisplaybreaks[1]} indica a \LaTeX{} que puede partir páginas en mitad de una ecuación que ocupa varias líneas. El número que le sigue, 1 en nuestro caso, puede tomar los valores 1, 2, 3 o 4 e indica lo fácil o difícil que será que \LaTeX{} haga esto. Un 1 indica que, aunque se pueda partir, intente evitarlo; un 4 indica que no hay ningún problema en hacerlo. Esta orden va en la cabecera del documento.
+	\item El comando \mintinline{latex}{\intertext} permite interrumpir una ecuación para añadir un texto y continuar posteriormente manteniendo los puntos de alineación.
+		\begin{codigo-arriba}
+			\begin{equation*}
+				\begin{split}
+					f(x) & = (x+3)^2 \\
+					\intertext{desarrollamos el cuadrado} 
+						 & = x^2+6x+9.
+				\end{split}			
+			\end{equation*}
+		\end{codigo-arriba}
+
+	Cuando el texto es poco, como en el ejemplo, \mintinline{latex}{\shortintertext}  tiene el mismo efecto, pero dejando un poco menos de espacio alrededor del texto. Esta última orden es parte del paquete \texttt{mathtools}.
+	\item Si se quiere que la numeración de las ecuaciones se resetee al comenzar cada sección, podemos añadir lo siguiente en la cabecera:
+			\begin{minted}{latex}
+			\numberwithin{equation}{section}	
+			\end{minted}
+	\item \mintinline{latex}{\eqref{etiqueta}} escribe la referencia de la ecuación entre paréntesis a diferencia de \mintinline{latex}{\ref{etiqueta}} que sólo escribe el número.
+	\item \mintinline{latex}{\\[espacio]} permite añadir espacio extra de separación entre líneas.
+		\begin{codigo-lado}
+			\begin{gather*}
+				y=\frac{1}{1+\frac{1}{x}}-\sqrt{1+x} \\[5mm]
+				x=\sqrt{1+\frac{1}{2y}}
+			\end{gather*}	
+		\end{codigo-lado}
+	\item Ya habíamos comentado que se puede usar \mintinline{latex}{\tag{nombre}} para cambiar la numeración usual de una ecuación por lo que queramos. También podemos usar \mintinline{latex}{\notag} para evitar que una ecuación se numere.
+		\begin{codigo-lado}
+			\begin{gather}
+				y=\frac{1}{1+\frac{1}{x}}-\sqrt{1+x} \label{eq:tag1} \tag{eq1}\\
+				x=\sqrt{1+\frac{1}{2y}} \notag
+			\end{gather}	
+		\end{codigo-lado}
+\end{itemize}
+
+
+
+\section{Teoremas y demostraciones}
+
+Para definir un entorno tipo teorema, proposición o similar, vamos a usar la orden \mintinline{latex}{\newtheorem{entorno}{Nombre}} o las variantes con opciones 
+\begin{minted}{tex}
+\newtheorem{entorno}{Nombre}[nivel para la numeración]
+\newtheorem{entorno}[misma numeración que]{Nombre}
+\end{minted}
+Si le añadimos un asterisco obtenemos un entorno sin numerar.
+
+Por ejemplo, en la cabecera hemos añadido lo siguiente:
+\begin{minted}{latex}
+\theoremstyle{plain}
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{coro}[teorema]{Corolario}
+\newtheorem{lema}[teorema]{Lema}
+\theoremstyle{definition}
+\newtheorem{definicion}[teorema]{Definición}
+\theoremstyle{remark}
+\newtheorem*{observacion}{Observación} 
+\end{minted}
+
+Los estilos modifican el aspecto del entorno:
+\begin{description}
+    \item[plain] texto en itálica y espacio alrededor. Se usa normalmente para teoremas, proposiciones, lemas, corolarios o conjeturas.
+    \item[definition] texto en letra normal y espacio alrededor. Se usa para definiciones, problemas, ejercicios, axiomas, propiedades o hipótesis.
+    \item[remark] texto en letra normal sin espacio alrededor añadido. Se usa para observaciones, notas, notación. 
+\end{description}
+
+Para incluir una demostración tenemos el entorno \texttt{proof}. En los casos en que la demostración termine en una línea de matemáticas centrada o un ítem se le puede indicar con \mintinline{latex}{\qedhere} que coloque el símbolo de final de demostración en un punto concreto.
+
+\begin{minted}{latex}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\end{minted}
+
+\begin{codigo-arriba}
+\begin{definicion}
+Sea $f \colon [a,b] \to \mathbb{R}$ una función. Diremos que $f$ es \emph{lipschitziana} si existe una constante $K$ tal que 
+\[
+\left| f(x)-f(y) \right| \leq M \left| x-y \right|, \quad \forall x,y \in [a,b].
+\]
+\end{definicion}
+
+\begin{prop}
+Las funciones lipschitzianas son continuas.
+\end{prop}
+\begin{proof}
+Aquí va la demostración completa, con sus cuentas, algún $\varepsilon$ y algún $\delta$.
+\end{proof}
+
+\begin{teorema}[de los ceros de Bolzano]
+Sea $f \colon [a,b] \to \mathbb{R}$ una función cotinua verificando que $f(a)f(b)<0$. Entonces existe $c \in (a,b)$ tal que $f(c)=0$.
+\end{teorema}
+\end{codigo-arriba}
+
+
+%\section{Entornos flotantes}
+%
+%Los entornos flotantes principales son las tablas y las figuras. Su posición depende del espacio que haya disponible en la página y \LaTeX{} los ``mueve'' a donde considere que están mejor. 
+
+
+
+
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{AMUG} American Mathematical Society and the \LaTeX3 Project:
+  \emph{User's Guide for the \textnormal{\ttfamily amsmath} package},
+  Version~2.$+$,
+  \url{https://mirror.ctan.org/macros/latex/required/amsmath/amsldoc.tex} and
+  \url{https://mirror.ctan.org/macros/latex/required/amsmath/amsldoc.pdf},
+  2021.
+
+\bibitem{BEZ} Javier Bezos, \emph{Ortotipografía y notaciones matemáticas}, \url{https://www.texnia.com/archive/ortomatem.pdf}.
+
+\bibitem{CLSL} Scott Pakin:
+  \emph{The Comprehensive \LaTeX{} Symbol List},
+  \url{https://ctan.org/tex-archive/info/symbols/comprehensive/}.
+
+\bibitem{LFC} The \LaTeX{} Font Catalogue, 
+  \url{https://tug.org/FontCatalogue/allfonts.html} .
+
+\bibitem{MML} George Gr\"atzer: \textit{More Math into \LaTeX},
+   5th edition, Springer, New York, 2016.
+
+\bibitem{SMG} American Mathematical Society: \emph{Short Math Guide v.2.0}, \url{http://mirrors.ctan.org/info/short-math-guide/short-math-guide.pdf}.
+
+\end{thebibliography}
+
+
+\end{document}
