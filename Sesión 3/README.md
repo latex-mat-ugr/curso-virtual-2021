@@ -1,4 +1,4 @@
-# Taller de LaTeX para alumnos de Grado en Matemáticas::Transparencias
+# Taller de LaTeX yosigopublicando::Transparencias
 
 ![fc](https://github.com/latex-mat-ugr/Curso-LaTeX/blob/master/Imagenes/fc.jpg?raw=true)
 
