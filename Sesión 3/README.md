@@ -1,6 +1,6 @@
 # Taller de LaTeX para alumnos de Grado en Matemáticas::Transparencias
 
-![fc](../Imagenes/fc.jpg)
+![fc](https://github.com/latex-mat-ugr/Curso-LaTeX/blob/master/Imagenes/fc.jpg?raw=true)
 
 [Pedro A. García Sánchez](http://www.ugr.es/local/pedro), <pedro@ugr.es>
 
