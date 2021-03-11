@@ -166,3 +166,16 @@ El código anterior, al igual que `\maketitle`, crea una nueva transparencia con
 - El estilo debe ser sencillo para no distraer a la audiencia
 
 - No abusar de las pausas
+
+
+***
+
+## Enlaces de interés
+
+- [Visual studio code](https://code.visualstudio.com/)
+
+- [Markdown+math](https://marketplace.visualstudio.com/items?itemName=goessner.mdmath) visual studio code
+
+- [Marp](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode) para visual estudio code
+
+- [pandoc](https://pandoc.org/)
