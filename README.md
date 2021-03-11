@@ -24,12 +24,11 @@ Para subir el material a overleaf seguiremos los siguientes pasos:
 3. Abrir el archivo `mi primer documento.tex`
 
 Las siguientes capturas nos muestran el proceso:
+![Crear nuevo proyecto](https://github.com/latex-mat-ugr/curso-virtual-2021/blob/main/Sesi%C3%B3n%201/Presentaci%C3%B3n/img/overleaf-crear-proyecto.png?raw=true)
 
-![Crear nuevo proyecto](https://github.com/latex-mat-ugr/curso-virtual-2021/blob/main/Sesi%C3%B3n%201/Presentaci%C3%B3n/img/overleaf-crear-proyecto.png)
+![Subir proyecto](https://github.com/latex-mat-ugr/curso-virtual-2021/blob/main/Sesi%C3%B3n%201/Presentaci%C3%B3n/img/overleaf-subir-proyecto.png?raw=true)
 
-![Subir proyecto](https://github.com/latex-mat-ugr/curso-virtual-2021/blob/main/Sesi%C3%B3n%201/Presentaci%C3%B3n/img/overleaf-subir-proyecto.png)
-
-![Arrastrar el archivo comprimido](https://github.com/latex-mat-ugr/curso-virtual-2021/blob/main/Sesi%C3%B3n%201/Presentaci%C3%B3n/img/overleaf-arrastrar-zip.png)
+![Arrastrar el archivo comprimido](https://github.com/latex-mat-ugr/curso-virtual-2021/blob/main/Sesi%C3%B3n%201/Presentaci%C3%B3n/img/overleaf-arrastrar-zip.png?raw=true)
 
 ## Seguimiento del curso a través de Overleaf
 
@@ -47,10 +46,10 @@ Debido al carácter online del curso y la cantidad de participantes habrá conec
 
 A continuación aparecerá una pantalla con dos tipos de enlaces:
 
-![Enlaces para compartir un proyecto en Overleaf](img/link-sharing-overleaf.png)
+![Enlaces para compartir un proyecto en Overleaf](img/link-sharing-overleaf.png?raw=true)
 
 y copiaremos el primero para compartirlo en el chat del tutor.
 
 Si no aparece directamente esa ventana tendremos que pulsar en el enlace *Turn on link sharing*:
 
-![Activar los enlaces para compartir un proyecto en Overleaf](img/turn-on-link-sharing-overleaf.png)
+![Activar los enlaces para compartir un proyecto en Overleaf](img/turn-on-link-sharing-overleaf.png?raw=true)
