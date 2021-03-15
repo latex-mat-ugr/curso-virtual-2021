@@ -1120,6 +1120,8 @@ b^{30}+30 a b^{29}+435 a^2 b^{28}+4060 a^3 b^{27} + 27405 a^4 b^{26}
 
 \subsection{Varias ecuaciones}
 
+Los siguientes entornos incluyen varias ecuaciones, cada una con su etiqueta y numeración, con un aspecto común.
+
 \subsubsection{Sin alinear: el entorno gather}
 
 El entorno \texttt{gather} escribe las líneas centradas, cada una con su correspondiente numeración.
@@ -1281,7 +1283,7 @@ Para definir un entorno tipo teorema, proposición o similar, vamos a usar la or
 \end{minted}
 Si le añadimos un asterisco obtenemos un entorno sin numerar.
 
-Por ejemplo, en la cabecera hemos añadido lo siguiente:
+Por ejemplo, en la cabecera de este documento hemos añadido lo siguiente:
 \begin{minted}{latex}
 \theoremstyle{plain}
 \newtheorem{teorema}{Teorema}[section]
@@ -1292,6 +1294,13 @@ Por ejemplo, en la cabecera hemos añadido lo siguiente:
 \theoremstyle{remark}
 \newtheorem*{observacion}{Observación} 
 \end{minted}
+Esto quiere decir que 
+\begin{itemize}
+	\item Hay un entorno \texttt{teorema} que se numera por secciones, esto es, al comienzo de cada sección empieza de nuevo. Si estamos en la segunda sección, los teoremas serán 2.1, 2.2,... y, al pasar a la tercera sección comenzarán por 3.1, 3.2,...
+	\item Hay dos entornos, \texttt{coro} y \texttt{lema} que tienen el mismo aspecto y numeración que los teoremas. Esto quiere decir que después del teorema~2.3 viene el lema~2.4. Lemas y corolarios no tienen una numeración independiente.
+	\item El entorno \texttt{definicion} tiene un aspecto diferente, usa el estilo ``definition'', pero comparte la numeración con los entornos anteriores.
+	\item Por último, el entorno \texttt{observacion} no se numera, para eso se usa el asterisco en newtheorem y tiene, también, su propio estilo, ``remark'' en este caso.
+\end{itemize}
 
 Los estilos modifican el aspecto del entorno:
 \begin{description}
