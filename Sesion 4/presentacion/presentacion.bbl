@@ -1,0 +1,41 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Arseneau(2003)]{wrapfigure}
+D.~Arseneau.
+\newblock The wrapfig package.
+\newblock preprint (2020), publicado en
+  \href{https://www.ctan.org/pkg/wrapfig}{ctan.org}, 2003.
+
+\bibitem[contributors(2020)]{Chemical}
+Wikibooks contributors.
+\newblock Latex/chemical graphics.
+\newblock Wikibooks, The Free Textbook Project (2020), publicado en \href{
+  https://en.wikibooks.org/w/index.php?title=LaTeX/Chemical_Graphics&oldid=3684470}{wikibooks.org},
+  2020.
+
+\bibitem[contributors(2019)]{ManualLatexWikilibros}
+Wikilibros contributors.
+\newblock Manual de latex/ inserción de figuras externas.
+\newblock Wikilibros (2020), publicado en
+  \href{https://es.wikibooks.org/w/index.php?title=Manual_de_LaTeX/Inserci%C3%B3n_de_figuras_externas&oldid=369900}{wikibooks.org},
+  2019.
+
+\bibitem[D.P.~Carlisle(2017)]{DocGraphicx}
+S.P.Q.~Rahtz D.P.~Carlisle.
+\newblock The graphicx package.
+\newblock preprint (2020), publicado en
+  \href{http://texdoc.net/texmf-dist/doc/latex/graphics/graphicx.pdf}{texdoc.net},
+  2017.
+
+\bibitem[Matthias(2020)]{pdfpages}
+A.~Matthias.
+\newblock pdfpages – include pdf documents in latex.
+\newblock preprint (2020), publicado en
+  \href{https://www.ctan.org/pkg/pdfpages}{ctan.org}, 2020.
+
+\end{thebibliography}
